@@ -19,6 +19,8 @@
         --text:#101828;
         --muted:#475467;
 
+        --pink-900:#6a0033;
+        --pink-800:#85003f;
         --pink-700:#b01261;
         --pink-600:#db2777;
         --pink-500:#ec4899;
@@ -27,9 +29,9 @@
 
         /* Solid section backgrounds (MORE contrast) */
         --bg-1:#fff3fb;   /* light */
-        --bg-2:#ffe2f1;   /* stronger pink */
-        --bg-3:#ffd0e9;   /* deeper */
-        --bg-4:#ffb9dc;   /* darkest section (still readable) */
+        --bg-2:#ffd6ea;   /* stronger pink */
+        --bg-3:#ffc0e1;   /* deeper */
+        --bg-4:#6a0033;   /* DRAMATIC deep magenta */
         --bg-5:#fff7fd;   /* light reset */
 
         --border: rgba(16,24,40,.12);
@@ -98,7 +100,7 @@
       .sec-1{ background: var(--bg-1); }
       .sec-2{ background: var(--bg-2); }
       .sec-3{ background: var(--bg-3); }
-      .sec-4{ background: var(--bg-4); } /* darkest */
+      .sec-4{ background: var(--bg-4); } /* dramatic */
       .sec-5{ background: var(--bg-5); }
 
       /* White cards */
@@ -165,14 +167,54 @@
       }
       .field::placeholder{ color: rgba(71,84,103,.72); }
 
-      /* Make the “darkest section” still feel polished */
+      /* =========================
+         DRAMATIC SIGNUP SECTION
+         ========================= */
+      .sec-4 .section-title,
+      .sec-4 .section-subtitle{
+        color: #fff;
+        text-shadow: 0 10px 24px rgba(0,0,0,.35);
+      }
       .sec-4 .accent-line{
-        box-shadow: 0 14px 20px rgba(16,24,40,.18);
+        background: linear-gradient(90deg, #ffd1ea, #ffffff, #ffd1ea);
+        box-shadow: 0 16px 24px rgba(0,0,0,.25);
       }
-      .sec-4 h2, .sec-4 p, .sec-4 label{
-        /* keep text readable on darker bg */
-        color: var(--text);
+
+      /* Add glam “spotlight” behind the signup card (still solid section) */
+      .sec-4{
+        position: relative;
+        overflow: hidden;
       }
+      .sec-4::before{
+        content:"";
+        position:absolute;
+        inset:-120px;
+        pointer-events:none;
+        background:
+          radial-gradient(500px 340px at 50% 20%, rgba(255,255,255,.20), transparent 70%),
+          radial-gradient(700px 420px at 50% 70%, rgba(236,72,153,.22), transparent 68%);
+        opacity:.9;
+      }
+
+      /* Add subtle “sparkle dots” on the dramatic section */
+      .sec-4::after{
+        content:"";
+        position:absolute;
+        inset:-80px;
+        pointer-events:none;
+        opacity:.55;
+        background-image:
+          radial-gradient(circle at 12% 28%, rgba(255,255,255,.85) 0 1.6px, transparent 3px),
+          radial-gradient(circle at 20% 64%, rgba(255,255,255,.75) 0 1.2px, transparent 3px),
+          radial-gradient(circle at 42% 22%, rgba(255,255,255,.85) 0 1.8px, transparent 3px),
+          radial-gradient(circle at 64% 36%, rgba(255,255,255,.70) 0 1.1px, transparent 3px),
+          radial-gradient(circle at 78% 20%, rgba(255,255,255,.90) 0 2px, transparent 3px),
+          radial-gradient(circle at 86% 62%, rgba(255,255,255,.72) 0 1.3px, transparent 3px);
+        filter: blur(.2px);
+      }
+
+      /* Keep signup content above overlays */
+      .sec-4 .content-wrap{ position: relative; z-index: 1; }
 
       @media (prefers-reduced-motion: reduce){
         *{ scroll-behavior:auto !important; transition:none !important; animation:none !important; }
@@ -355,20 +397,19 @@
           </div>
         </section>
 
-        <!-- DARKEST SECTION: Signup -->
+        <!-- DRAMATIC SIGNUP -->
         <section class="w-full py-14 md:py-20 px-6 sec-4" id="signup">
-          <div class="max-w-5xl mx-auto">
+          <div class="max-w-5xl mx-auto content-wrap">
             <div class="accent-line"></div>
-            <h2 class="headline text-3xl md:text-5xl font-extrabold text-center mb-10" style="color: var(--pink-700);">
+            <h2 class="headline section-title text-3xl md:text-5xl font-extrabold text-center mb-3">
               Sign Up for an Info Session
             </h2>
+            <p class="section-subtitle text-center max-w-2xl mx-auto mb-10">
+              This is your first step. We’ll follow up with the next available session details.
+            </p>
 
             <div class="card p-6 md:p-10">
-              <p class="text-gray-700 text-base md:text-lg">
-                Fill this out and we’ll contact you with the next available info session details.
-              </p>
-
-              <form class="mt-8 grid md:grid-cols-2 gap-5" action="#" method="post">
+              <form class="grid md:grid-cols-2 gap-5" action="#" method="post">
                 <div>
                   <label class="font-extrabold text-gray-900" for="firstName">First name</label>
                   <input class="field mt-2" id="firstName" name="firstName" type="text" autocomplete="given-name" required />
@@ -390,6 +431,7 @@
                   <label class="font-extrabold text-gray-900" for="message">Anything you want us to know?</label>
                   <textarea class="field mt-2" id="message" name="message" rows="4" placeholder="Optional"></textarea>
                 </div>
+
                 <div class="md:col-span-2 flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
                   <button class="btn-primary inline-flex items-center justify-center" type="submit">Submit</button>
                   <p class="text-sm max-w-xl" style="color: var(--muted);">
@@ -443,9 +485,7 @@
         how_title: "How It Works",
         first_step_title: "Your First Step",
         important_title: "Important to Know",
-        logo_url: "PASTE_YOUR_IMAGE_URL_HERE",
-        font_family: "Poppins",
-        font_size: 16
+        logo_url: "PASTE_YOUR_IMAGE_URL_HERE"
       };
 
       async function onConfigChange(config) {
@@ -453,8 +493,7 @@
         document.getElementById("hero-description").textContent =
           config.hero_description || defaultConfig.hero_description;
 
-        const ctaText = config.cta_button || defaultConfig.cta_button;
-        document.getElementById("cta-button").textContent = ctaText;
+        document.getElementById("cta-button").textContent = config.cta_button || defaultConfig.cta_button;
 
         document.getElementById("who-title").textContent = config.who_title || defaultConfig.who_title;
         document.getElementById("how-title").textContent = config.how_title || defaultConfig.how_title;
@@ -487,6 +526,4 @@
     </script>
   </body>
 </html>
-
-
 
