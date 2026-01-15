@@ -505,5 +505,189 @@
         <section class="w-full py-14 md:py-20 px-6 bg-white" id="signup">
           <div class="max-w-5xl mx-auto">
             <div class="accent-line"></div>
-            <h2 class="headline text-3xl md:text-5xl font-extrabold text-center mb-
+            <h2 class="headline text-3xl md:text-5xl font-extrabold text-center mb-10" style="color: var(--pink-700);">
+              Sign Up for an Info Session
+            </h2>
 
+            <div class="glass-soft p-6 md:p-10">
+              <p class="text-gray-700 text-base md:text-lg">
+                Fill this out and we’ll contact you with the next available info session details.
+              </p>
+
+              <form class="mt-8 grid md:grid-cols-2 gap-5" action="#" method="post">
+                <div>
+                  <label class="font-extrabold text-gray-900" for="firstName">First name</label>
+                  <input class="field mt-2" id="firstName" name="firstName" type="text" autocomplete="given-name" required />
+                </div>
+
+                <div>
+                  <label class="font-extrabold text-gray-900" for="lastName">Last name</label>
+                  <input class="field mt-2" id="lastName" name="lastName" type="text" autocomplete="family-name" required />
+                </div>
+
+                <div>
+                  <label class="font-extrabold text-gray-900" for="phone">Phone</label>
+                  <input class="field mt-2" id="phone" name="phone" type="tel" autocomplete="tel" />
+                  <p class="text-sm mt-2" style="color: var(--muted);">Optional, but helpful for reminders.</p>
+                </div>
+
+                <div>
+                  <label class="font-extrabold text-gray-900" for="email">Email</label>
+                  <input class="field mt-2" id="email" name="email" type="email" autocomplete="email" required />
+                </div>
+
+                <div class="md:col-span-2">
+                  <label class="font-extrabold text-gray-900" for="message">Anything you want us to know?</label>
+                  <textarea class="field mt-2" id="message" name="message" rows="4" placeholder="Optional"></textarea>
+                </div>
+
+                <div class="md:col-span-2 flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
+                  <button class="btn-primary inline-flex items-center justify-center" type="submit">
+                    Submit
+                  </button>
+
+                  <p class="text-sm max-w-xl" style="color: var(--muted);">
+                    Note: You Better Werk is not a guaranteed job placement program. We don’t promise specific jobs, timelines, wages, industries, or hours.
+                    Participation requires eligibility through the California Department of Rehabilitation (DOR). We can help you start that process.
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================
+             IMPORTANT TO KNOW
+             ========================= -->
+        <section class="w-full py-14 md:py-20 px-6 soft-section" id="important">
+          <div class="max-w-5xl mx-auto">
+            <div class="accent-line"></div>
+            <h2 id="important-title" class="headline text-3xl md:text-5xl font-extrabold text-center mb-10" style="color: var(--pink-700);">
+              Important to Know
+            </h2>
+
+            <div class="glass-soft p-6 md:p-10">
+              <ul class="grid md:grid-cols-2 gap-5 text-gray-700">
+                <li class="glass p-6">
+                  <span class="font-extrabold text-gray-900">Not guaranteed.</span> This is not a guaranteed job program.
+                </li>
+                <li class="glass p-6">
+                  <span class="font-extrabold text-gray-900">No promises.</span> We don’t promise specific jobs, timelines, wages, industries, or hours.
+                </li>
+                <li class="glass p-6">
+                  <span class="font-extrabold text-gray-900">Individualized.</span> Each path is personalized based on goals and readiness.
+                </li>
+                <li class="glass p-6">
+                  <span class="font-extrabold text-gray-900">DOR eligibility.</span> Participation requires eligibility through DOR.
+                </li>
+              </ul>
+
+              <div class="mt-10 flex justify-center">
+                <a class="btn-primary inline-flex items-center justify-center" href="#signup">
+                  Sign Up for an Info Session
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- =========================
+           FOOTER
+           ========================= -->
+      <footer class="w-full py-10 px-6 text-center" style="background: linear-gradient(180deg, #fff 0%, #fff3fb 100%);">
+        <div class="max-w-4xl mx-auto">
+          <p class="font-extrabold text-gray-900">You Better Werk</p>
+          <p class="mt-2" style="color: var(--muted);">Recovery is a journey. Work can be part of yours.</p>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const defaultConfig = {
+        tagline: "Recovery. Stability. A Path Back to Work.",
+        hero_description:
+          "You Better Werk is an employment program for people in recovery who are ready to take the next step toward work. We believe meaningful employment can support stability, confidence, and long-term recovery.",
+        cta_button: "Sign Up for an Info Session",
+        who_title: "Who It’s For",
+        how_title: "How It Works",
+        first_step_title: "Your First Step",
+        important_title: "Important to Know",
+        logo_url: "PASTE_YOUR_IMAGE_URL_HERE",
+        font_family: "Poppins",
+        font_size: 16
+      };
+
+      async function onConfigChange(config) {
+        const baseSize = config.font_size || defaultConfig.font_size;
+
+        // Text
+        document.getElementById("tagline").textContent = config.tagline || defaultConfig.tagline;
+        document.getElementById("hero-description").textContent =
+          config.hero_description || defaultConfig.hero_description;
+
+        const ctaText = config.cta_button || defaultConfig.cta_button;
+        document.getElementById("cta-button").textContent = ctaText;
+
+        document.getElementById("who-title").textContent = config.who_title || defaultConfig.who_title;
+        document.getElementById("how-title").textContent = config.how_title || defaultConfig.how_title;
+        document.getElementById("first-step-title").textContent =
+          config.first_step_title || defaultConfig.first_step_title;
+        document.getElementById("important-title").textContent =
+          config.important_title || defaultConfig.important_title;
+
+        // Logo
+        const logo = document.getElementById("ybw-logo");
+        logo.src = config.logo_url || defaultConfig.logo_url;
+
+        // Font
+        const customFont = config.font_family || defaultConfig.font_family;
+        document.body.style.fontFamily = `${customFont}, system-ui, -apple-system, Segoe UI, Roboto, sans-serif`;
+        document.body.style.fontSize = `${baseSize}px`;
+      }
+
+      function mapToCapabilities(config) {
+        return {
+          recolorables: [],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => {
+              config.font_family = value;
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => {
+              config.font_size = value;
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        };
+      }
+
+      function mapToEditPanelValues(config) {
+        return new Map([
+          ["tagline", config.tagline || defaultConfig.tagline],
+          ["hero_description", config.hero_description || defaultConfig.hero_description],
+          ["cta_button", config.cta_button || defaultConfig.cta_button],
+          ["who_title", config.who_title || defaultConfig.who_title],
+          ["how_title", config.how_title || defaultConfig.how_title],
+          ["first_step_title", config.first_step_title || defaultConfig.first_step_title],
+          ["important_title", config.important_title || defaultConfig.important_title],
+          ["logo_url", config.logo_url || defaultConfig.logo_url]
+        ]);
+      }
+
+      if (window.elementSdk) {
+        window.elementSdk.init({
+          defaultConfig,
+          onConfigChange,
+          mapToCapabilities,
+          mapToEditPanelValues
+        });
+      }
+    </script>
+  </body>
+</html>
