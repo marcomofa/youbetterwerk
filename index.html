@@ -5,24 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>You Better Werk - Employment Program</title>
 
-    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Squarespace Element SDK (optional) -->
     <script src="/_sdk/element_sdk.js"></script>
     <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
 
-    <!-- Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
 
     <style>
-      /* =========================
-         GLAM + SECTION BLOCKS
-         Solid section backgrounds, white cards
-         ========================= */
       :root{
         --text:#101828;
         --muted:#475467;
@@ -32,11 +24,13 @@
         --pink-500:#ec4899;
 
         --bg-hero:#ffe6f4;
-        --bg-1:#fff3fb;
-        --bg-2:#fff0f8;
-        --bg-3:#ffeaf6;
-        --bg-4:#fff7fd;
-        --bg-5:#fff1f9;
+
+        /* Solid section backgrounds (MORE contrast) */
+        --bg-1:#fff3fb;   /* light */
+        --bg-2:#ffe2f1;   /* stronger pink */
+        --bg-3:#ffd0e9;   /* deeper */
+        --bg-4:#ffb9dc;   /* darkest section (still readable) */
+        --bg-5:#fff7fd;   /* light reset */
 
         --border: rgba(16,24,40,.12);
 
@@ -53,14 +47,12 @@
         background: #ffffff;
       }
 
-      /* ADA focus */
       :focus-visible{
         outline: 3px solid #111827;
         outline-offset: 3px;
         border-radius: 12px;
       }
 
-      /* Skip link */
       .skip-link{
         position:absolute; left:12px; top:10px;
         transform: translateY(-220%);
@@ -73,13 +65,12 @@
       }
       .skip-link:focus{ transform: translateY(0); }
 
-      /* Headline font */
       .headline{
         font-family:"Playfair Display", Georgia, serif;
         letter-spacing:-0.02em;
       }
 
-      /* Hero background (sparkly, but section is SOLID) */
+      /* Hero (solid + sparkles) */
       .hero{
         position:relative;
         overflow:hidden;
@@ -107,7 +98,7 @@
       .sec-1{ background: var(--bg-1); }
       .sec-2{ background: var(--bg-2); }
       .sec-3{ background: var(--bg-3); }
-      .sec-4{ background: var(--bg-4); }
+      .sec-4{ background: var(--bg-4); } /* darkest */
       .sec-5{ background: var(--bg-5); }
 
       /* White cards */
@@ -118,7 +109,6 @@
         box-shadow: var(--shadow);
       }
 
-      /* Accent line */
       .accent-line{
         height: 5px;
         width: 84px;
@@ -128,7 +118,6 @@
         box-shadow: 0 12px 18px rgba(219,39,119,.20);
       }
 
-      /* CTA buttons */
       .btn-primary{
         border-radius: 999px;
         padding: 14px 22px;
@@ -156,7 +145,6 @@
       }
       .btn-secondary:hover{ transform: translateY(-1px); }
 
-      /* Jewel icon */
       .jewel{
         width: 44px; height: 44px;
         border-radius: 16px;
@@ -167,7 +155,6 @@
         flex: 0 0 auto;
       }
 
-      /* Form fields */
       .field{
         width:100%;
         border-radius: 16px;
@@ -177,6 +164,15 @@
         color: var(--text);
       }
       .field::placeholder{ color: rgba(71,84,103,.72); }
+
+      /* Make the “darkest section” still feel polished */
+      .sec-4 .accent-line{
+        box-shadow: 0 14px 20px rgba(16,24,40,.18);
+      }
+      .sec-4 h2, .sec-4 p, .sec-4 label{
+        /* keep text readable on darker bg */
+        color: var(--text);
+      }
 
       @media (prefers-reduced-motion: reduce){
         *{ scroll-behavior:auto !important; transition:none !important; animation:none !important; }
@@ -188,7 +184,6 @@
     <a class="skip-link" href="#main">Skip to main content</a>
 
     <div id="app" class="w-full h-full overflow-auto">
-      <!-- HERO (solid background + sparkles, card is white) -->
       <header class="hero w-full">
         <div class="max-w-6xl mx-auto px-6 py-14 md:py-20 relative z-10">
           <div class="flex flex-col items-center text-center gap-6">
@@ -227,7 +222,6 @@
       </header>
 
       <main id="main">
-        <!-- WHO (solid section bg + white card) -->
         <section class="w-full py-14 md:py-20 px-6 sec-1" id="who">
           <div class="max-w-5xl mx-auto">
             <div class="accent-line"></div>
@@ -283,7 +277,6 @@
           </div>
         </section>
 
-        <!-- HOW (solid section bg + white card) -->
         <section class="w-full py-14 md:py-20 px-6 sec-2" id="how">
           <div class="max-w-5xl mx-auto">
             <div class="accent-line"></div>
@@ -317,15 +310,12 @@
               </div>
 
               <div class="mt-10 flex justify-center">
-                <a class="btn-primary inline-flex items-center justify-center" href="#signup">
-                  Sign Up for an Info Session
-                </a>
+                <a class="btn-primary inline-flex items-center justify-center" href="#signup">Sign Up for an Info Session</a>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- FIRST STEP (solid section bg + white card) -->
         <section class="w-full py-14 md:py-20 px-6 sec-3" id="first-step">
           <div class="max-w-5xl mx-auto">
             <div class="accent-line"></div>
@@ -341,20 +331,16 @@
 
               <div class="mt-9 grid sm:grid-cols-2 gap-5">
                 <div class="rounded-2xl border border-[rgba(16,24,40,.10)] p-5 flex gap-4 items-start">
-                  <span class="jewel" aria-hidden="true">✅</span>
-                  <div><span class="font-extrabold text-gray-900">Learn</span> what You Better Werk is</div>
+                  <span class="jewel" aria-hidden="true">✅</span><div><span class="font-extrabold text-gray-900">Learn</span> what You Better Werk is</div>
                 </div>
                 <div class="rounded-2xl border border-[rgba(16,24,40,.10)] p-5 flex gap-4 items-start">
-                  <span class="jewel" aria-hidden="true">❓</span>
-                  <div><span class="font-extrabold text-gray-900">Ask</span> questions</div>
+                  <span class="jewel" aria-hidden="true">❓</span><div><span class="font-extrabold text-gray-900">Ask</span> questions</div>
                 </div>
                 <div class="rounded-2xl border border-[rgba(16,24,40,.10)] p-5 flex gap-4 items-start">
-                  <span class="jewel" aria-hidden="true">👋</span>
-                  <div><span class="font-extrabold text-gray-900">Meet</span> the team</div>
+                  <span class="jewel" aria-hidden="true">👋</span><div><span class="font-extrabold text-gray-900">Meet</span> the team</div>
                 </div>
                 <div class="rounded-2xl border border-[rgba(16,24,40,.10)] p-5 flex gap-4 items-start">
-                  <span class="jewel" aria-hidden="true">💭</span>
-                  <div><span class="font-extrabold text-gray-900">Decide</span> if it feels right for you</div>
+                  <span class="jewel" aria-hidden="true">💭</span><div><span class="font-extrabold text-gray-900">Decide</span> if it feels right for you</div>
                 </div>
               </div>
 
@@ -363,15 +349,13 @@
               </p>
 
               <div class="mt-10 flex justify-center">
-                <a class="btn-primary inline-flex items-center justify-center" href="#signup">
-                  Sign Up for an Info Session
-                </a>
+                <a class="btn-primary inline-flex items-center justify-center" href="#signup">Sign Up for an Info Session</a>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- SIGNUP (solid section bg + white card) -->
+        <!-- DARKEST SECTION: Signup -->
         <section class="w-full py-14 md:py-20 px-6 sec-4" id="signup">
           <div class="max-w-5xl mx-auto">
             <div class="accent-line"></div>
@@ -389,31 +373,25 @@
                   <label class="font-extrabold text-gray-900" for="firstName">First name</label>
                   <input class="field mt-2" id="firstName" name="firstName" type="text" autocomplete="given-name" required />
                 </div>
-
                 <div>
                   <label class="font-extrabold text-gray-900" for="lastName">Last name</label>
                   <input class="field mt-2" id="lastName" name="lastName" type="text" autocomplete="family-name" required />
                 </div>
-
                 <div>
                   <label class="font-extrabold text-gray-900" for="phone">Phone</label>
                   <input class="field mt-2" id="phone" name="phone" type="tel" autocomplete="tel" />
                   <p class="text-sm mt-2" style="color: var(--muted);">Optional, but helpful for reminders.</p>
                 </div>
-
                 <div>
                   <label class="font-extrabold text-gray-900" for="email">Email</label>
                   <input class="field mt-2" id="email" name="email" type="email" autocomplete="email" required />
                 </div>
-
                 <div class="md:col-span-2">
                   <label class="font-extrabold text-gray-900" for="message">Anything you want us to know?</label>
                   <textarea class="field mt-2" id="message" name="message" rows="4" placeholder="Optional"></textarea>
                 </div>
-
                 <div class="md:col-span-2 flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
                   <button class="btn-primary inline-flex items-center justify-center" type="submit">Submit</button>
-
                   <p class="text-sm max-w-xl" style="color: var(--muted);">
                     Note: You Better Werk is not a guaranteed job placement program. We don’t promise specific jobs, timelines, wages, industries, or hours.
                     Participation requires eligibility through the California Department of Rehabilitation (DOR). We can help you start that process.
@@ -424,7 +402,6 @@
           </div>
         </section>
 
-        <!-- IMPORTANT (solid section bg + white card) -->
         <section class="w-full py-14 md:py-20 px-6 sec-5" id="important">
           <div class="max-w-5xl mx-auto">
             <div class="accent-line"></div>
@@ -434,24 +411,14 @@
 
             <div class="card p-6 md:p-10">
               <ul class="grid md:grid-cols-2 gap-5 text-gray-700">
-                <li class="rounded-2xl border border-[rgba(16,24,40,.10)] p-6">
-                  <span class="font-extrabold text-gray-900">Not guaranteed.</span> This is not a guaranteed job program.
-                </li>
-                <li class="rounded-2xl border border-[rgba(16,24,40,.10)] p-6">
-                  <span class="font-extrabold text-gray-900">No promises.</span> We don’t promise specific jobs, timelines, wages, industries, or hours.
-                </li>
-                <li class="rounded-2xl border border-[rgba(16,24,40,.10)] p-6">
-                  <span class="font-extrabold text-gray-900">Individualized.</span> Each path is personalized based on goals and readiness.
-                </li>
-                <li class="rounded-2xl border border-[rgba(16,24,40,.10)] p-6">
-                  <span class="font-extrabold text-gray-900">DOR eligibility.</span> Participation requires eligibility through DOR.
-                </li>
+                <li class="rounded-2xl border border-[rgba(16,24,40,.10)] p-6"><span class="font-extrabold text-gray-900">Not guaranteed.</span> This is not a guaranteed job program.</li>
+                <li class="rounded-2xl border border-[rgba(16,24,40,.10)] p-6"><span class="font-extrabold text-gray-900">No promises.</span> We don’t promise specific jobs, timelines, wages, industries, or hours.</li>
+                <li class="rounded-2xl border border-[rgba(16,24,40,.10)] p-6"><span class="font-extrabold text-gray-900">Individualized.</span> Each path is personalized based on goals and readiness.</li>
+                <li class="rounded-2xl border border-[rgba(16,24,40,.10)] p-6"><span class="font-extrabold text-gray-900">DOR eligibility.</span> Participation requires eligibility through DOR.</li>
               </ul>
 
               <div class="mt-10 flex justify-center">
-                <a class="btn-primary inline-flex items-center justify-center" href="#signup">
-                  Sign Up for an Info Session
-                </a>
+                <a class="btn-primary inline-flex items-center justify-center" href="#signup">Sign Up for an Info Session</a>
               </div>
             </div>
           </div>
@@ -482,8 +449,6 @@
       };
 
       async function onConfigChange(config) {
-        const baseSize = config.font_size || defaultConfig.font_size;
-
         document.getElementById("tagline").textContent = config.tagline || defaultConfig.tagline;
         document.getElementById("hero-description").textContent =
           config.hero_description || defaultConfig.hero_description;
@@ -498,57 +463,29 @@
         document.getElementById("important-title").textContent =
           config.important_title || defaultConfig.important_title;
 
-        const logo = document.getElementById("ybw-logo");
-        logo.src = config.logo_url || defaultConfig.logo_url;
-
-        const customFont = config.font_family || defaultConfig.font_family;
-        document.body.style.fontFamily = `${customFont}, system-ui, -apple-system, Segoe UI, Roboto, sans-serif`;
-        document.body.style.fontSize = `${baseSize}px`;
-      }
-
-      function mapToCapabilities(config) {
-        return {
-          recolorables: [],
-          borderables: [],
-          fontEditable: {
-            get: () => config.font_family || defaultConfig.font_family,
-            set: (value) => {
-              config.font_family = value;
-              window.elementSdk.setConfig({ font_family: value });
-            }
-          },
-          fontSizeable: {
-            get: () => config.font_size || defaultConfig.font_size,
-            set: (value) => {
-              config.font_size = value;
-              window.elementSdk.setConfig({ font_size: value });
-            }
-          }
-        };
-      }
-
-      function mapToEditPanelValues(config) {
-        return new Map([
-          ["tagline", config.tagline || defaultConfig.tagline],
-          ["hero_description", config.hero_description || defaultConfig.hero_description],
-          ["cta_button", config.cta_button || defaultConfig.cta_button],
-          ["who_title", config.who_title || defaultConfig.who_title],
-          ["how_title", config.how_title || defaultConfig.how_title],
-          ["first_step_title", config.first_step_title || defaultConfig.first_step_title],
-          ["important_title", config.important_title || defaultConfig.important_title],
-          ["logo_url", config.logo_url || defaultConfig.logo_url]
-        ]);
+        document.getElementById("ybw-logo").src = config.logo_url || defaultConfig.logo_url;
       }
 
       if (window.elementSdk) {
         window.elementSdk.init({
           defaultConfig,
           onConfigChange,
-          mapToCapabilities,
-          mapToEditPanelValues
+          mapToCapabilities: () => ({ recolorables: [], borderables: [] }),
+          mapToEditPanelValues: (config) =>
+            new Map([
+              ["tagline", config.tagline || defaultConfig.tagline],
+              ["hero_description", config.hero_description || defaultConfig.hero_description],
+              ["cta_button", config.cta_button || defaultConfig.cta_button],
+              ["who_title", config.who_title || defaultConfig.who_title],
+              ["how_title", config.how_title || defaultConfig.how_title],
+              ["first_step_title", config.first_step_title || defaultConfig.first_step_title],
+              ["important_title", config.important_title || defaultConfig.important_title],
+              ["logo_url", config.logo_url || defaultConfig.logo_url]
+            ])
         });
       }
     </script>
   </body>
 </html>
+
 
