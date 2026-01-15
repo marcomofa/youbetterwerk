@@ -5,188 +5,259 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>You Better Werk - Employment Program</title>
 
-    <!-- Tailwind (ok for Squarespace Code Block / Header injection) -->
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Squarespace Element SDK (safe to keep if you’re using it) -->
+    <!-- Squarespace Element SDK (optional) -->
     <script src="/_sdk/element_sdk.js"></script>
     <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
 
-    <!-- Fonts -->
+    <!-- Fonts (still professional, but glam) -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
 
     <style>
       /* =========================
-         THEME (clean + “sparkle”)
+         GLAM THEME (sparkly + premium)
          ========================= */
       :root{
-        --ybw-bg: #fff7fb;          /* very light pink */
-        --ybw-surface: #ffffff;
-        --ybw-text: #111827;        /* slate-900 */
-        --ybw-muted: #4b5563;       /* gray-600 */
-        --ybw-border: rgba(17,24,39,.10);
+        --bg: #fff3fb;
+        --text: #101828;
+        --muted: #475467;
 
-        --ybw-pink-700: #be185d;
-        --ybw-pink-600: #db2777;
-        --ybw-pink-500: #ec4899;
-        --ybw-pink-200: #fbcfe8;
+        --pink-700:#b01261;
+        --pink-600:#db2777;
+        --pink-500:#ec4899;
+        --pink-300:#f9a8d4;
 
-        --ybw-focus: #111827;
+        --gold-500:#f59e0b;
+        --gold-300:#fcd34d;
 
-        --radius: 18px;
-        --shadow: 0 14px 34px rgba(17,24,39,.10);
-        --shadow-soft: 0 10px 26px rgba(17,24,39,.08);
+        --border: rgba(16,24,40,.12);
+
+        --radius: 22px;
+        --shadow: 0 18px 46px rgba(16,24,40,.14);
+        --shadow-soft: 0 16px 34px rgba(16,24,40,.10);
       }
 
       html, body { height: 100%; }
-      body {
-        margin: 0;
-        font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-        color: var(--ybw-text);
-        background: var(--ybw-bg);
+      body{
+        margin:0;
+        font-family:"Poppins", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        color: var(--text);
+        background: var(--bg);
       }
 
-      /* Accessible focus */
-      :focus-visible {
-        outline: 3px solid var(--ybw-focus);
+      /* ADA: strong, consistent keyboard focus */
+      :focus-visible{
+        outline: 3px solid #111827;
         outline-offset: 3px;
-        border-radius: 10px;
+        border-radius: 12px;
       }
 
-      /* Skip link (ADA / keyboard) */
-      .skip-link {
-        position: absolute;
-        left: 12px;
-        top: 10px;
-        transform: translateY(-200%);
-        background: #fff;
-        color: #111827;
-        padding: 10px 12px;
-        border-radius: 10px;
+      /* Skip link */
+      .skip-link{
+        position:absolute; left:12px; top:10px;
+        transform: translateY(-220%);
+        background:#fff;
+        color:#111827;
+        padding:10px 12px;
+        border-radius:12px;
         box-shadow: var(--shadow-soft);
-        z-index: 9999;
+        z-index:9999;
       }
-      .skip-link:focus { transform: translateY(0); }
+      .skip-link:focus{ transform: translateY(0); }
 
       /* =========================
-         HERO “sparkle but clean”
+         HERO: "glam but not messy"
          ========================= */
-      .hero {
-        position: relative;
-        overflow: hidden;
+      .hero{
+        position:relative;
+        overflow:hidden;
+        isolation:isolate;
         background:
-          radial-gradient(1200px 500px at 15% 10%, rgba(236, 72, 153, .22), transparent 55%),
-          radial-gradient(900px 450px at 85% 20%, rgba(219, 39, 119, .18), transparent 60%),
-          linear-gradient(180deg, #fff2f9 0%, #ffffff 60%, #fff7fb 100%);
+          radial-gradient(900px 500px at 20% 12%, rgba(236,72,153,.30), transparent 60%),
+          radial-gradient(780px 420px at 85% 18%, rgba(245,158,11,.18), transparent 62%),
+          radial-gradient(900px 520px at 55% 90%, rgba(219,39,119,.18), transparent 60%),
+          linear-gradient(180deg, #ffe6f4 0%, #fff 55%, #fff3fb 100%);
       }
 
-      /* Subtle sparkle overlay (static = accessible; no flashing) */
-      .hero::before {
-        content: "";
-        position: absolute;
-        inset: -40px;
-        pointer-events: none;
-        opacity: .55;
+      /* Sparkle field (subtle, premium) */
+      .hero::before{
+        content:"";
+        position:absolute; inset:-80px;
+        pointer-events:none;
+        opacity:.65;
         background-image:
-          radial-gradient(circle at 12% 22%, rgba(255,255,255,.95) 0 2px, transparent 3px),
-          radial-gradient(circle at 34% 18%, rgba(255,255,255,.85) 0 1.5px, transparent 3px),
-          radial-gradient(circle at 62% 28%, rgba(255,255,255,.9) 0 2px, transparent 3px),
-          radial-gradient(circle at 78% 18%, rgba(255,255,255,.85) 0 1.5px, transparent 3px),
-          radial-gradient(circle at 22% 62%, rgba(255,255,255,.85) 0 1.5px, transparent 3px),
-          radial-gradient(circle at 55% 72%, rgba(255,255,255,.9) 0 2px, transparent 3px),
-          radial-gradient(circle at 88% 62%, rgba(255,255,255,.85) 0 1.5px, transparent 3px);
-        filter: blur(.2px);
+          radial-gradient(circle at 8% 22%, rgba(255,255,255,.95) 0 2px, transparent 3px),
+          radial-gradient(circle at 14% 62%, rgba(255,255,255,.85) 0 1.4px, transparent 3px),
+          radial-gradient(circle at 24% 18%, rgba(255,255,255,.9) 0 2px, transparent 3px),
+          radial-gradient(circle at 36% 48%, rgba(255,255,255,.85) 0 1.2px, transparent 3px),
+          radial-gradient(circle at 52% 22%, rgba(255,255,255,.9) 0 2px, transparent 3px),
+          radial-gradient(circle at 62% 62%, rgba(255,255,255,.88) 0 1.6px, transparent 3px),
+          radial-gradient(circle at 76% 28%, rgba(255,255,255,.92) 0 2.2px, transparent 3.2px),
+          radial-gradient(circle at 84% 56%, rgba(255,255,255,.86) 0 1.5px, transparent 3px),
+          radial-gradient(circle at 92% 18%, rgba(255,255,255,.92) 0 2px, transparent 3px);
+        filter: blur(.25px);
       }
 
-      .surface-card {
-        background: var(--ybw-surface);
-        border: 1px solid var(--ybw-border);
+      /* Shimmer veil */
+      .hero::after{
+        content:"";
+        position:absolute; inset:-120px;
+        pointer-events:none;
+        background:
+          conic-gradient(from 210deg at 50% 50%,
+            rgba(255,255,255,.00),
+            rgba(255,255,255,.16),
+            rgba(255,255,255,.00),
+            rgba(255,255,255,.14),
+            rgba(255,255,255,.00)
+          );
+        opacity:.55;
+        mix-blend-mode: soft-light;
+        transform: rotate(-8deg);
+      }
+
+      /* Floating sparkles (very light motion) */
+      @keyframes drift {
+        0% { transform: translateY(0px) translateX(0px); opacity:.55; }
+        50% { transform: translateY(-10px) translateX(6px); opacity:.95; }
+        100% { transform: translateY(0px) translateX(0px); opacity:.55; }
+      }
+      .sparkle{
+        position:absolute;
+        font-size: 26px;
+        animation: drift 5.5s ease-in-out infinite;
+        filter: drop-shadow(0 10px 18px rgba(219,39,119,.25));
+      }
+      .sparkle.s2{ animation-delay: 1.1s; font-size: 22px; }
+      .sparkle.s3{ animation-delay: 2.2s; font-size: 28px; }
+      .sparkle.s4{ animation-delay: 3.3s; font-size: 20px; }
+
+      @media (prefers-reduced-motion: reduce){
+        .sparkle{ animation:none; }
+      }
+
+      /* =========================
+         GLASS CARDS (premium)
+         ========================= */
+      .glass{
+        background: rgba(255,255,255,.72);
+        border: 1px solid rgba(255,255,255,.55);
         border-radius: var(--radius);
         box-shadow: var(--shadow);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
       }
 
-      .section-title {
-        color: var(--ybw-pink-700);
-        letter-spacing: -0.02em;
+      .glass-soft{
+        background: rgba(255,255,255,.82);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-soft);
       }
 
-      .accent-line {
-        height: 4px;
-        width: 64px;
+      .headline{
+        font-family:"Playfair Display", Georgia, serif;
+        letter-spacing:-0.02em;
+      }
+
+      .accent-line{
+        height: 5px;
+        width: 84px;
         border-radius: 999px;
-        background: linear-gradient(90deg, var(--ybw-pink-500), var(--ybw-pink-600));
         margin: 0 auto 22px;
+        background: linear-gradient(90deg, var(--pink-500), var(--gold-300), var(--pink-600));
+        box-shadow: 0 10px 18px rgba(219,39,119,.18);
       }
 
-      .chip {
-        border: 1px solid rgba(219,39,119,.18);
-        background: rgba(236,72,153,.08);
-        color: var(--ybw-pink-700);
-        border-radius: 999px;
-        padding: 8px 12px;
-        font-weight: 700;
-        font-size: .95rem;
-        display: inline-flex;
-        gap: 8px;
-        align-items: center;
-      }
-
-      /* Buttons (high contrast + clean) */
-      .btn-primary {
-        background: linear-gradient(90deg, var(--ybw-pink-600), var(--ybw-pink-500));
-        color: #ffffff;
-        font-weight: 800;
+      /* CTA buttons (lux) */
+      .btn-primary{
+        position: relative;
+        isolation:isolate;
         border-radius: 999px;
         padding: 14px 22px;
-        box-shadow: 0 12px 20px rgba(219,39,119,.18);
+        font-weight: 900;
+        color:#fff;
+        background: linear-gradient(90deg, var(--pink-700), var(--pink-500), var(--gold-300));
+        box-shadow: 0 18px 26px rgba(219,39,119,.26);
         transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
       }
-      .btn-primary:hover { transform: translateY(-1px); filter: saturate(1.05); }
-      .btn-primary:active { transform: translateY(0px); }
+      .btn-primary::before{
+        content:"";
+        position:absolute; inset: 1px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(255,255,255,.18), rgba(255,255,255,.02));
+        z-index:-1;
+      }
+      .btn-primary:hover{
+        transform: translateY(-1px);
+        filter: saturate(1.08);
+        box-shadow: 0 22px 32px rgba(219,39,119,.30);
+      }
 
-      .btn-secondary {
-        background: #ffffff;
-        color: var(--ybw-pink-700);
-        font-weight: 800;
+      .btn-secondary{
         border-radius: 999px;
         padding: 14px 22px;
-        border: 1px solid rgba(219,39,119,.22);
-        box-shadow: 0 10px 18px rgba(17,24,39,.08);
+        font-weight: 900;
+        color: var(--pink-700);
+        background: rgba(255,255,255,.92);
+        border: 1px solid rgba(219,39,119,.25);
+        box-shadow: 0 14px 22px rgba(16,24,40,.10);
         transition: transform .15s ease, box-shadow .15s ease;
       }
-      .btn-secondary:hover { transform: translateY(-1px); }
+      .btn-secondary:hover{ transform: translateY(-1px); }
 
-      /* Icons: keep cute but professional (no big emoji blocks) */
-      .icon-dot {
-        width: 38px;
-        height: 38px;
-        border-radius: 14px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(236,72,153,.10);
-        border: 1px solid rgba(219,39,119,.16);
+      /* “Icon jewels” */
+      .jewel{
+        width: 44px; height: 44px;
+        border-radius: 16px;
+        display:flex; align-items:center; justify-content:center;
+        background:
+          radial-gradient(circle at 30% 25%, rgba(255,255,255,.95), rgba(255,255,255,.2) 38%, rgba(236,72,153,.10) 70%),
+          linear-gradient(135deg, rgba(236,72,153,.18), rgba(245,158,11,.12));
+        border: 1px solid rgba(219,39,119,.20);
+        box-shadow: 0 14px 20px rgba(219,39,119,.14);
         flex: 0 0 auto;
       }
 
-      /* Form styling */
-      .field {
-        width: 100%;
-        border-radius: 14px;
-        border: 1px solid rgba(17,24,39,.18);
+      /* Form fields (clean + premium) */
+      .field{
+        width:100%;
+        border-radius: 16px;
+        border: 1px solid rgba(16,24,40,.18);
         padding: 12px 14px;
-        background: #fff;
-        color: var(--ybw-text);
+        background: rgba(255,255,255,.92);
+        color: var(--text);
       }
-      .field::placeholder { color: rgba(75,85,99,.75); }
-      .help-text { color: var(--ybw-muted); font-size: .95rem; }
+      .field::placeholder{ color: rgba(71,84,103,.72); }
 
-      /* Motion: respect reduced motion */
-      @media (prefers-reduced-motion: reduce) {
-        * { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+      /* Section background with subtle glam tint */
+      .soft-section{
+        background:
+          radial-gradient(900px 340px at 15% 20%, rgba(236,72,153,.10), transparent 60%),
+          radial-gradient(800px 320px at 90% 60%, rgba(245,158,11,.08), transparent 62%),
+          linear-gradient(180deg, #ffffff 0%, #fff7fb 100%);
+      }
+
+      /* Tiny “sparkle divider” */
+      .sparkle-divider{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:10px;
+        color: rgba(176,18,97,.85);
+        font-weight: 800;
+      }
+      .sparkle-divider::before,
+      .sparkle-divider::after{
+        content:"";
+        height: 1px;
+        width: min(160px, 26vw);
+        background: linear-gradient(90deg, transparent, rgba(176,18,97,.35), transparent);
       }
     </style>
 
@@ -201,27 +272,35 @@
            HERO
            ========================= -->
       <header class="hero w-full">
-        <div class="max-w-6xl mx-auto px-6 py-14 md:py-20 relative">
+        <!-- Floating sparkles -->
+        <div class="sparkle s1" style="top: 60px; left: 26px;" aria-hidden="true">✨</div>
+        <div class="sparkle s2" style="top: 110px; right: 44px;" aria-hidden="true">✦</div>
+        <div class="sparkle s3" style="bottom: 90px; left: 12%;" aria-hidden="true">✨</div>
+        <div class="sparkle s4" style="bottom: 130px; right: 12%;" aria-hidden="true">✧</div>
+
+        <div class="max-w-6xl mx-auto px-6 py-14 md:py-20 relative z-10">
           <div class="flex flex-col items-center text-center gap-6">
-            <!-- LOGO (replace src with your Squarespace image URL) -->
+            <!-- LOGO (use your uploaded glitter logo as the brand mark) -->
             <img
               id="ybw-logo"
               src="PASTE_YOUR_IMAGE_URL_HERE"
               alt="You Better Werk"
-              class="w-[280px] md:w-[420px] h-auto drop-shadow-[0_18px_30px_rgba(219,39,119,0.22)]"
+              class="w-[300px] md:w-[460px] h-auto drop-shadow-[0_26px_44px_rgba(219,39,119,0.28)]"
             />
 
-            <p id="tagline" class="text-lg md:text-xl font-semibold text-gray-900">
+            <div class="sparkle-divider" aria-hidden="true">✦ ✨ ✦</div>
+
+            <p id="tagline" class="text-lg md:text-2xl font-extrabold text-gray-900">
               Recovery. Stability. A Path Back to Work.
             </p>
 
-            <div class="surface-card max-w-3xl w-full p-6 md:p-8">
+            <div class="glass max-w-3xl w-full p-6 md:p-9">
               <p id="hero-description" class="text-base md:text-lg text-gray-700 leading-relaxed">
                 You Better Werk is an employment program for people in recovery who are ready to take the next step toward work.
-                We believe that meaningful employment can support stability, confidence, and long-term recovery.
+                We believe meaningful employment can support stability, confidence, and long-term recovery.
               </p>
 
-              <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+              <div class="mt-7 flex flex-col sm:flex-row gap-3 justify-center">
                 <a id="cta-button" class="btn-primary inline-flex items-center justify-center" href="#signup">
                   Sign Up for an Info Session
                 </a>
@@ -230,20 +309,24 @@
                 </a>
               </div>
 
-              <p class="help-text mt-4">
-                Not sure yet? That’s okay. The info session is a low-pressure way to learn more and ask questions.
+              <p class="mt-4 text-sm md:text-base" style="color: var(--muted);">
+                The info session is a low-pressure way to learn more and ask questions.
               </p>
             </div>
 
+            <!-- Mini glam “pill” highlights -->
             <div class="flex flex-wrap gap-3 justify-center">
-              <span class="chip" aria-label="Evidence-based approach">
-                <span aria-hidden="true">✨</span> Strengths-based support
+              <span class="px-4 py-2 rounded-full font-extrabold text-sm"
+                style="background: rgba(255,255,255,.75); border: 1px solid rgba(219,39,119,.22); box-shadow: 0 14px 22px rgba(219,39,119,.10); color: var(--pink-700);">
+                ✨ Strengths-based support
               </span>
-              <span class="chip" aria-label="Rapid connection to work">
-                <span aria-hidden="true">⚡</span> Real-world employment focus
+              <span class="px-4 py-2 rounded-full font-extrabold text-sm"
+                style="background: rgba(255,255,255,.75); border: 1px solid rgba(245,158,11,.22); box-shadow: 0 14px 22px rgba(245,158,11,.10); color: #8a4b06;">
+                ✦ Real-world employment focus
               </span>
-              <span class="chip" aria-label="Ongoing coaching">
-                <span aria-hidden="true">🤝</span> Coaching while working
+              <span class="px-4 py-2 rounded-full font-extrabold text-sm"
+                style="background: rgba(255,255,255,.75); border: 1px solid rgba(219,39,119,.22); box-shadow: 0 14px 22px rgba(219,39,119,.10); color: var(--pink-700);">
+                💎 Coaching while working
               </span>
             </div>
           </div>
@@ -252,57 +335,65 @@
 
       <main id="main">
         <!-- =========================
-             WHO IT'S FOR
+             WHO IT’S FOR
              ========================= -->
-        <section class="w-full py-14 md:py-20 px-6 bg-white" id="who">
+        <section class="w-full py-14 md:py-20 px-6 soft-section" id="who">
           <div class="max-w-5xl mx-auto">
             <div class="accent-line"></div>
-            <h2 id="who-title" class="section-title text-3xl md:text-4xl font-black text-center mb-10">
+            <h2 id="who-title" class="headline text-3xl md:text-5xl font-extrabold text-center mb-10" style="color: var(--pink-700);">
               Who It’s For
             </h2>
 
-            <div class="surface-card p-6 md:p-10">
+            <div class="glass-soft p-6 md:p-10">
               <p class="text-base md:text-lg text-gray-700 leading-relaxed">
-                <span class="font-extrabold text-[#be185d]">You Better Werk</span> supports individuals with substance use histories who are
-                interested in working or returning to work—especially if employment has been interrupted and you want flexible, individualized support.
+                <span class="font-extrabold" style="color: var(--pink-700);">You Better Werk</span> is designed for individuals with substance use histories who
+                are interested in working or returning to work and benefit from flexible, individualized employment support aligned with recovery and readiness.
               </p>
 
-              <div class="mt-8 grid md:grid-cols-2 gap-5">
-                <div class="flex gap-4">
-                  <span class="icon-dot" aria-hidden="true">💪</span>
-                  <div>
-                    <h3 class="font-extrabold text-gray-900">Curious about working again</h3>
-                    <p class="text-gray-700">You want to explore what’s possible at a pace that fits you.</p>
+              <div class="mt-9 grid md:grid-cols-2 gap-6">
+                <div class="glass p-6 text-left">
+                  <div class="flex gap-4 items-start">
+                    <span class="jewel" aria-hidden="true">💪</span>
+                    <div>
+                      <h3 class="font-extrabold text-gray-900">Curious about working again</h3>
+                      <p class="text-gray-700 mt-1">Explore what’s possible—at a pace that fits you.</p>
+                    </div>
                   </div>
                 </div>
 
-                <div class="flex gap-4">
-                  <span class="icon-dot" aria-hidden="true">🔄</span>
-                  <div>
-                    <h3 class="font-extrabold text-gray-900">Employment has been interrupted</h3>
-                    <p class="text-gray-700">You’re rebuilding and want support getting back into the workforce.</p>
+                <div class="glass p-6 text-left">
+                  <div class="flex gap-4 items-start">
+                    <span class="jewel" aria-hidden="true">🔄</span>
+                    <div>
+                      <h3 class="font-extrabold text-gray-900">Employment has been interrupted</h3>
+                      <p class="text-gray-700 mt-1">Get support rebuilding your path back to work.</p>
+                    </div>
                   </div>
                 </div>
 
-                <div class="flex gap-4">
-                  <span class="icon-dot" aria-hidden="true">🧭</span>
-                  <div>
-                    <h3 class="font-extrabold text-gray-900">Not sure what job you want</h3>
-                    <p class="text-gray-700">We help you identify strengths, goals, and next steps.</p>
+                <div class="glass p-6 text-left">
+                  <div class="flex gap-4 items-start">
+                    <span class="jewel" aria-hidden="true">🧭</span>
+                    <div>
+                      <h3 class="font-extrabold text-gray-900">Not sure where to start</h3>
+                      <p class="text-gray-700 mt-1">We help identify strengths, goals, and next steps.</p>
+                    </div>
                   </div>
                 </div>
 
-                <div class="flex gap-4">
-                  <span class="icon-dot" aria-hidden="true">🤝</span>
-                  <div>
-                    <h3 class="font-extrabold text-gray-900">You want supportive guidance</h3>
-                    <p class="text-gray-700">You’ll have a team supporting you before, during, and after employment.</p>
+                <div class="glass p-6 text-left">
+                  <div class="flex gap-4 items-start">
+                    <span class="jewel" aria-hidden="true">🤝</span>
+                    <div>
+                      <h3 class="font-extrabold text-gray-900">Want ongoing support</h3>
+                      <p class="text-gray-700 mt-1">You’ll have coaching before, during, and after employment.</p>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div class="mt-10 rounded-2xl border border-pink-200 bg-pink-50 p-6">
-                <p class="font-semibold text-gray-900">
+              <div class="mt-10 glass p-6 text-center">
+                <p class="font-extrabold text-gray-900">
                   You don’t need a résumé. You don’t need to have everything figured out.
                 </p>
                 <p class="text-gray-700 mt-1">
@@ -316,42 +407,42 @@
         <!-- =========================
              HOW IT WORKS
              ========================= -->
-        <section class="w-full py-14 md:py-20 px-6" id="how">
+        <section class="w-full py-14 md:py-20 px-6 bg-white" id="how">
           <div class="max-w-5xl mx-auto">
             <div class="accent-line"></div>
-            <h2 id="how-title" class="section-title text-3xl md:text-4xl font-black text-center mb-10">
+            <h2 id="how-title" class="headline text-3xl md:text-5xl font-extrabold text-center mb-10" style="color: var(--pink-700);">
               How It Works
             </h2>
 
-            <div class="surface-card p-6 md:p-10">
+            <div class="glass-soft p-6 md:p-10">
               <p class="text-base md:text-lg text-gray-700 leading-relaxed">
-                This program is built around <span class="font-extrabold text-[#be185d]">real-world employment</span> and individualized support.
-                Instead of long pre-employment training, we help participants connect to work sooner—with coaching while they’re working.
+                This program focuses on <span class="font-extrabold" style="color: var(--pink-700);">real-world employment</span>—not months of training before anything happens.
+                We support participants with individualized coaching while they’re working.
               </p>
 
-              <div class="mt-8 grid md:grid-cols-2 gap-5">
-                <div class="rounded-2xl border border-[rgba(219,39,119,.18)] bg-white p-6">
+              <div class="mt-9 grid md:grid-cols-2 gap-6">
+                <div class="glass p-6">
                   <h3 class="font-extrabold text-gray-900">Dedicated case manager</h3>
                   <p class="text-gray-700 mt-1">Personalized support based on your goals and readiness.</p>
                 </div>
 
-                <div class="rounded-2xl border border-[rgba(219,39,119,.18)] bg-white p-6">
+                <div class="glass p-6">
                   <h3 class="font-extrabold text-gray-900">Job placement specialist</h3>
-                  <p class="text-gray-700 mt-1">Support identifying opportunities and connecting with employers.</p>
+                  <p class="text-gray-700 mt-1">Help connecting with employers and opportunities.</p>
                 </div>
 
-                <div class="rounded-2xl border border-[rgba(219,39,119,.18)] bg-white p-6">
-                  <h3 class="font-extrabold text-gray-900">Goal setting & planning</h3>
-                  <p class="text-gray-700 mt-1">One-on-one planning to match work with your real-life priorities.</p>
+                <div class="glass p-6">
+                  <h3 class="font-extrabold text-gray-900">One-on-one planning</h3>
+                  <p class="text-gray-700 mt-1">Guidance to align work with your real-life priorities.</p>
                 </div>
 
-                <div class="rounded-2xl border border-[rgba(219,39,119,.18)] bg-white p-6">
+                <div class="glass p-6">
                   <h3 class="font-extrabold text-gray-900">Ongoing coaching</h3>
-                  <p class="text-gray-700 mt-1">Support while you’re working to address barriers and sustain employment.</p>
+                  <p class="text-gray-700 mt-1">Support to address barriers and sustain employment.</p>
                 </div>
               </div>
 
-              <div class="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+              <div class="mt-10 flex justify-center">
                 <a class="btn-primary inline-flex items-center justify-center" href="#signup">
                   Sign Up for an Info Session
                 </a>
@@ -361,42 +452,42 @@
         </section>
 
         <!-- =========================
-             FIRST STEP
+             YOUR FIRST STEP
              ========================= -->
-        <section class="w-full py-14 md:py-20 px-6 bg-white" id="first-step">
+        <section class="w-full py-14 md:py-20 px-6 soft-section" id="first-step">
           <div class="max-w-5xl mx-auto">
             <div class="accent-line"></div>
-            <h2 id="first-step-title" class="section-title text-3xl md:text-4xl font-black text-center mb-10">
+            <h2 id="first-step-title" class="headline text-3xl md:text-5xl font-extrabold text-center mb-10" style="color: var(--pink-700);">
               Your First Step
             </h2>
 
-            <div class="surface-card p-6 md:p-10">
+            <div class="glass-soft p-6 md:p-10">
               <p class="text-base md:text-lg text-gray-700 leading-relaxed">
-                Start with an <span class="font-extrabold text-[#be185d]">information session at Stepping Stone</span>.
-                It’s a simple, low-pressure way to learn about the program and ask questions.
+                Start with an <span class="font-extrabold" style="color: var(--pink-700);">information session at Stepping Stone</span>.
+                It’s a low-pressure way to learn about the program and ask questions.
               </p>
 
-              <div class="mt-8 grid sm:grid-cols-2 gap-4">
-                <div class="flex gap-4 rounded-2xl border border-[rgba(17,24,39,.10)] bg-white p-5">
-                  <span class="icon-dot" aria-hidden="true">✅</span>
-                  <div class="text-gray-700"><span class="font-extrabold text-gray-900">Learn</span> what You Better Werk is</div>
+              <div class="mt-9 grid sm:grid-cols-2 gap-5">
+                <div class="glass p-5 flex gap-4 items-start">
+                  <span class="jewel" aria-hidden="true">✅</span>
+                  <div><span class="font-extrabold text-gray-900">Learn</span> what You Better Werk is</div>
                 </div>
-                <div class="flex gap-4 rounded-2xl border border-[rgba(17,24,39,.10)] bg-white p-5">
-                  <span class="icon-dot" aria-hidden="true">❓</span>
-                  <div class="text-gray-700"><span class="font-extrabold text-gray-900">Ask</span> questions</div>
+                <div class="glass p-5 flex gap-4 items-start">
+                  <span class="jewel" aria-hidden="true">❓</span>
+                  <div><span class="font-extrabold text-gray-900">Ask</span> questions</div>
                 </div>
-                <div class="flex gap-4 rounded-2xl border border-[rgba(17,24,39,.10)] bg-white p-5">
-                  <span class="icon-dot" aria-hidden="true">👋</span>
-                  <div class="text-gray-700"><span class="font-extrabold text-gray-900">Meet</span> the team</div>
+                <div class="glass p-5 flex gap-4 items-start">
+                  <span class="jewel" aria-hidden="true">👋</span>
+                  <div><span class="font-extrabold text-gray-900">Meet</span> the team</div>
                 </div>
-                <div class="flex gap-4 rounded-2xl border border-[rgba(17,24,39,.10)] bg-white p-5">
-                  <span class="icon-dot" aria-hidden="true">💭</span>
-                  <div class="text-gray-700"><span class="font-extrabold text-gray-900">Decide</span> if it feels right for you</div>
+                <div class="glass p-5 flex gap-4 items-start">
+                  <span class="jewel" aria-hidden="true">💭</span>
+                  <div><span class="font-extrabold text-gray-900">Decide</span> if it feels right for you</div>
                 </div>
               </div>
 
               <p class="text-gray-700 mt-8">
-                If you want to move forward, the next step is a one-on-one meeting with a case manager to explore goals, readiness, and interest in joining the program.
+                If you’re interested, the next step is a one-on-one meeting with a case manager to explore goals, readiness, and interest in joining the program.
               </p>
 
               <div class="mt-10 flex justify-center">
@@ -409,208 +500,10 @@
         </section>
 
         <!-- =========================
-             SIGNUP (clean + ADA)
+             SIGNUP
              ========================= -->
-        <section class="w-full py-14 md:py-20 px-6" id="signup">
+        <section class="w-full py-14 md:py-20 px-6 bg-white" id="signup">
           <div class="max-w-5xl mx-auto">
             <div class="accent-line"></div>
-            <h2 class="section-title text-3xl md:text-4xl font-black text-center mb-10">
-              Sign Up for an Info Session
-            </h2>
+            <h2 class="headline text-3xl md:text-5xl font-extrabold text-center mb-
 
-            <div class="surface-card p-6 md:p-10">
-              <p class="text-gray-700 text-base md:text-lg">
-                Fill this out and we’ll reach out with the next available info session details.
-              </p>
-
-              <!-- Replace action with your form handler (MailerLite, Squarespace form, etc.) -->
-              <form class="mt-8 grid md:grid-cols-2 gap-5" action="#" method="post">
-                <div>
-                  <label class="font-bold text-gray-900" for="firstName">First name</label>
-                  <input class="field mt-2" id="firstName" name="firstName" type="text" autocomplete="given-name" required />
-                </div>
-
-                <div>
-                  <label class="font-bold text-gray-900" for="lastName">Last name</label>
-                  <input class="field mt-2" id="lastName" name="lastName" type="text" autocomplete="family-name" required />
-                </div>
-
-                <div>
-                  <label class="font-bold text-gray-900" for="phone">Phone</label>
-                  <input class="field mt-2" id="phone" name="phone" type="tel" autocomplete="tel" />
-                  <p class="help-text mt-2">Optional, but helpful for reminders.</p>
-                </div>
-
-                <div>
-                  <label class="font-bold text-gray-900" for="email">Email</label>
-                  <input class="field mt-2" id="email" name="email" type="email" autocomplete="email" required />
-                </div>
-
-                <div class="md:col-span-2">
-                  <label class="font-bold text-gray-900" for="message">Anything you want us to know?</label>
-                  <textarea class="field mt-2" id="message" name="message" rows="4" placeholder="Optional"></textarea>
-                </div>
-
-                <div class="md:col-span-2 flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
-                  <button class="btn-primary inline-flex items-center justify-center" type="submit">
-                    Submit
-                  </button>
-
-                  <p class="help-text max-w-xl">
-                    Note: You Better Werk is not a guaranteed job placement program. We don’t promise specific jobs, timelines, wages, industries, or hours.
-                    Participation requires eligibility through the California Department of Rehabilitation (DOR). We can help you start that process.
-                  </p>
-                </div>
-              </form>
-            </div>
-          </div>
-        </section>
-
-        <!-- =========================
-             IMPORTANT TO KNOW
-             ========================= -->
-        <section class="w-full py-14 md:py-20 px-6 bg-white" id="important">
-          <div class="max-w-5xl mx-auto">
-            <div class="accent-line"></div>
-            <h2 id="important-title" class="section-title text-3xl md:text-4xl font-black text-center mb-10">
-              Important to Know
-            </h2>
-
-            <div class="surface-card p-6 md:p-10">
-              <ul class="grid md:grid-cols-2 gap-4 text-gray-700">
-                <li class="rounded-2xl border border-[rgba(17,24,39,.10)] bg-white p-5">
-                  <span class="font-extrabold text-gray-900">Not guaranteed.</span>
-                  This is not a guaranteed job program.
-                </li>
-                <li class="rounded-2xl border border-[rgba(17,24,39,.10)] bg-white p-5">
-                  <span class="font-extrabold text-gray-900">No promises.</span>
-                  We don’t promise specific jobs, timelines, wages, industries, or hours.
-                </li>
-                <li class="rounded-2xl border border-[rgba(17,24,39,.10)] bg-white p-5">
-                  <span class="font-extrabold text-gray-900">Individualized.</span>
-                  Each path is personalized based on goals and readiness.
-                </li>
-                <li class="rounded-2xl border border-[rgba(17,24,39,.10)] bg-white p-5">
-                  <span class="font-extrabold text-gray-900">DOR eligibility.</span>
-                  Participation requires eligibility through the California Department of Rehabilitation (DOR).
-                </li>
-              </ul>
-
-              <div class="mt-8 rounded-2xl border border-pink-200 bg-pink-50 p-6">
-                <p class="font-extrabold text-gray-900">We can help you start the process.</p>
-                <p class="text-gray-700 mt-1">
-                  If you need support opening a DOR case, we can guide you through the first steps.
-                </p>
-              </div>
-
-              <div class="mt-10 flex justify-center">
-                <a class="btn-primary inline-flex items-center justify-center" href="#signup">
-                  Sign Up for an Info Session
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <!-- =========================
-           FOOTER
-           ========================= -->
-      <footer class="w-full py-10 px-6 text-center" style="background: linear-gradient(180deg, #fff7fb 0%, #fff 100%);">
-        <div class="max-w-4xl mx-auto">
-          <p class="text-gray-900 font-extrabold text-lg">You Better Werk</p>
-          <p class="text-gray-700 mt-2">
-            Recovery is a journey. Work can be part of yours.
-          </p>
-        </div>
-      </footer>
-    </div>
-
-    <script>
-      const defaultConfig = {
-        tagline: "Recovery. Stability. A Path Back to Work.",
-        hero_description:
-          "You Better Werk is an employment program for people in recovery who are ready to take the next step toward work. We believe that meaningful employment can support stability, confidence, and long-term recovery.",
-        cta_button: "Sign Up for an Info Session",
-        who_title: "Who It’s For",
-        how_title: "How It Works",
-        first_step_title: "Your First Step",
-        important_title: "Important to Know",
-        logo_url: "PASTE_YOUR_IMAGE_URL_HERE",
-        font_family: "Poppins",
-        font_size: 16
-      };
-
-      async function onConfigChange(config) {
-        const baseSize = config.font_size || defaultConfig.font_size;
-
-        // text
-        document.getElementById("tagline").textContent = config.tagline || defaultConfig.tagline;
-        document.getElementById("hero-description").textContent =
-          config.hero_description || defaultConfig.hero_description;
-
-        const ctaText = config.cta_button || defaultConfig.cta_button;
-        document.querySelectorAll("#cta-button").forEach((btn) => (btn.textContent = ctaText));
-
-        document.getElementById("who-title").textContent = config.who_title || defaultConfig.who_title;
-        document.getElementById("how-title").textContent = config.how_title || defaultConfig.how_title;
-        document.getElementById("first-step-title").textContent =
-          config.first_step_title || defaultConfig.first_step_title;
-        document.getElementById("important-title").textContent =
-          config.important_title || defaultConfig.important_title;
-
-        // logo
-        const logo = document.getElementById("ybw-logo");
-        logo.src = config.logo_url || defaultConfig.logo_url;
-
-        // font
-        const customFont = config.font_family || defaultConfig.font_family;
-        document.body.style.fontFamily = `${customFont}, system-ui, -apple-system, Segoe UI, Roboto, sans-serif`;
-        document.body.style.fontSize = `${baseSize}px`;
-      }
-
-      function mapToCapabilities(config) {
-        return {
-          recolorables: [],
-          borderables: [],
-          fontEditable: {
-            get: () => config.font_family || defaultConfig.font_family,
-            set: (value) => {
-              config.font_family = value;
-              window.elementSdk.setConfig({ font_family: value });
-            }
-          },
-          fontSizeable: {
-            get: () => config.font_size || defaultConfig.font_size,
-            set: (value) => {
-              config.font_size = value;
-              window.elementSdk.setConfig({ font_size: value });
-            }
-          }
-        };
-      }
-
-      function mapToEditPanelValues(config) {
-        return new Map([
-          ["tagline", config.tagline || defaultConfig.tagline],
-          ["hero_description", config.hero_description || defaultConfig.hero_description],
-          ["cta_button", config.cta_button || defaultConfig.cta_button],
-          ["who_title", config.who_title || defaultConfig.who_title],
-          ["how_title", config.how_title || defaultConfig.how_title],
-          ["first_step_title", config.first_step_title || defaultConfig.first_step_title],
-          ["important_title", config.important_title || defaultConfig.important_title],
-          ["logo_url", config.logo_url || defaultConfig.logo_url]
-        ]);
-      }
-
-      if (window.elementSdk) {
-        window.elementSdk.init({
-          defaultConfig,
-          onConfigChange,
-          mapToCapabilities,
-          mapToEditPanelValues
-        });
-      }
-    </script>
-  </body>
-</html>
