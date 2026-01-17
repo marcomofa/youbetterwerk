@@ -16,19 +16,17 @@
 
   <style>
     :root{
-      /* Clean foundation (same “CE vibe”) */
       --bg: #f8fafc;
       --surface: #ffffff;
       --text: #0f172a;
       --muted: #475569;
 
-      /* Hot Pink Theme */
-      --accent: #db2777;   /* hot pink */
+      /* Hot pink theme */
+      --accent: #db2777;   /* pink */
       --accent2: #ec4899;  /* brighter pink */
 
-      /* Section bands */
-      --sectionA: #ffe6f4; /* soft pink */
-      --sectionB: #fff3fb; /* lighter pink */
+      --sectionA: #ffe6f4; /* light pink */
+      --sectionB: #fff0f9; /* softer pink */
 
       --radius: 16px;
       --shadow-sm: 0 6px 18px rgba(15, 23, 42, 0.10);
@@ -116,7 +114,7 @@
     }
     .toggle-switch.active .toggle-slider { transform: translateX(24px); }
 
-    /* HERO (same pattern as CE, but pink overlay) */
+    /* HERO */
     .hero {
       position: relative;
       min-height: 78vh;
@@ -124,7 +122,7 @@
       align-items: center;
       padding: 8.5rem 0 4.5rem;
       overflow: hidden;
-      background: #2a0b1a; /* deep plum base behind image */
+      background: #2a0b1f; /* deep pink-ish */
     }
     .hero-background { position: absolute; inset: 0; z-index: 0; }
     .hero-background img {
@@ -133,17 +131,16 @@
       object-fit: cover;
       display: block;
       transform: scale(1.02);
+      filter: saturate(1.05) contrast(1.02);
     }
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
       z-index: 1;
-      background: linear-gradient(
-        90deg,
-        rgba(42,11,26,0.72) 0%,
-        rgba(219,39,119,0.28) 100%
-      );
+      background:
+        radial-gradient(900px 420px at 20% 10%, rgba(236,72,153,0.30), transparent 60%),
+        linear-gradient(90deg, rgba(42,11,31,0.80) 0%, rgba(42,11,31,0.35) 100%);
     }
     .hero-content {
       position: relative;
@@ -154,13 +151,16 @@
       align-items: center;
       gap: 1.25rem;
     }
-    .hero h1 {
-      font-size: clamp(2.35rem, 5.6vw, 4.25rem);
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-      color: #fff;
-      max-width: 900px;
+
+    /* Hero title image */
+    #hero-title-image{
+      width: min(720px, 92vw);
+      height: auto;
+      display: block;
+      margin: 0 auto 0.35rem;
+      filter: drop-shadow(0 18px 34px rgba(0,0,0,0.28));
     }
+
     .hero p {
       font-size: clamp(1.05rem, 2vw, 1.3rem);
       color: rgba(255,255,255,0.92);
@@ -185,22 +185,18 @@
       font-family: "Poppins", system-ui, -apple-system, sans-serif;
       letter-spacing: 0.01em;
     }
-    .btn:focus-visible { outline: 3px solid rgba(236, 72, 153, 0.45); outline-offset: 2px; }
+    .btn:focus-visible { outline: 3px solid rgba(236, 72, 153, 0.35); outline-offset: 2px; }
     .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
     .btn:active { transform: translateY(0); box-shadow: none; }
 
     .btn-primary {
-      background: var(--accent);
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
       color: #fff;
-      box-shadow: 0 10px 22px rgba(219, 39, 119, 0.25);
+      box-shadow: 0 10px 22px rgba(219, 39, 119, 0.22);
     }
-    .btn-primary:hover { background: #c61f6a; }
+    .btn-primary:hover { filter: saturate(1.05); }
 
-    .btn-secondary {
-      background: rgba(255,255,255,0.12);
-      color: #fff;
-      border: 2px solid rgba(255,255,255,0.7);
-    }
+    .btn-secondary { background: rgba(255,255,255,0.12); color: #fff; border: 2px solid rgba(255,255,255,0.7); }
     .btn-secondary:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.9); }
 
     /* SECTIONS */
@@ -259,7 +255,7 @@
       border: 1px solid rgba(15,23,42,0.08);
     }
 
-    /* Highlight box (pink stripe like CE blue stripe) */
+    /* Highlight box */
     .highlight-box {
       margin-top: 2rem;
       background: var(--surface);
@@ -290,62 +286,100 @@
       margin-bottom: 0.5rem;
       letter-spacing: -0.01em;
       color: #111827;
-      display: flex;
-      align-items: center;
-      gap: 0.55rem;
     }
-    .card h3 .emoji{ font-size: 1.25rem; }
     .card p {
       font-size: 1rem;
       color: rgba(15,23,42,0.78);
       line-height: 1.65;
     }
 
-    /* Simple “steps” tags */
-    .steps-grid{
+    /* Pills */
+    .pill-grid{
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(3, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin: 1.25rem 0 1.75rem;
+    }
+
+    .pill{
+      background: rgba(255,255,255,0.72);
+      border: 2px solid rgba(255,255,255,0.65);
+      border-radius: 14px;
+      padding: 1.05rem 1.25rem;
+      box-shadow: 0 10px 20px rgba(15,23,42,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+      min-height: 64px;
+    }
+    .pill:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 16px 30px rgba(15,23,42,0.12);
+      background: rgba(255,255,255,0.82);
+    }
+    .pill span{
+      font-weight: 800;
+      font-size: 1.22rem;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+    }
+    .pill.pink span{ color: var(--accent); }
+
+    /* Activities tags */
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.8rem;
+      margin: 1.4rem 0 0.75rem;
+    }
+    .activity-tag {
+      background: var(--surface);
+      border: 1px solid rgba(15,23,42,0.08);
+      box-shadow: var(--shadow-sm);
+      border-radius: 14px;
+      padding: 0.95rem 0.9rem;
+      font-weight: 800;
+      text-align: center;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      color: rgba(15,23,42,0.85);
+    }
+    .activity-tag:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+    /* Why choose items */
+    .why-choose-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 1.1rem;
       margin-top: 1.5rem;
     }
-    .step-item{
+    .why-choose-item {
       background: var(--surface);
       border: 1px solid rgba(15,23,42,0.08);
       box-shadow: var(--shadow-sm);
       border-radius: var(--radius);
       padding: 1.75rem 1.5rem;
+      text-align: center;
       transition: transform 0.18s ease, box-shadow 0.18s ease;
     }
-    .step-item:hover{ transform: translateY(-4px); box-shadow: var(--shadow-md); }
-    .step-top{
-      display:flex;
-      align-items:center;
-      gap: 0.7rem;
-      margin-bottom: 0.4rem;
+    .why-choose-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .why-icon { font-size: 2.25rem; margin-bottom: 0.75rem; }
+    .why-choose-item h4 {
+      font-size: 1.15rem;
+      margin-bottom: 0.35rem;
+      color: #111827;
+      letter-spacing: -0.01em;
     }
-    .step-badge{
-      width: 38px; height: 38px;
-      border-radius: 12px;
-      display:grid; place-items:center;
-      background: rgba(236,72,153,0.16);
-      border: 1px solid rgba(219,39,119,0.18);
-      font-weight: 900;
-      color: var(--accent);
-    }
-    .step-item h4{
-      font-size: 1.12rem;
-      color:#111827;
-      letter-spacing:-0.01em;
-    }
-    .step-item p{
-      font-size: 0.98rem;
+    .why-choose-item p {
+      font-size: 0.96rem;
       color: rgba(15,23,42,0.75);
+      line-height: 1.55;
     }
 
     /* CTA band */
     .footer-cta {
       padding: 4.25rem 0 2.25rem;
-      background: #f8fafc;
+      background: #fff;
       text-align: center;
     }
     .footer-cta h2 {
@@ -361,9 +395,9 @@
       max-width: 860px;
     }
 
-    /* Social footer (same as your CE style, pink gradient instead of blue) */
+    /* Footer social */
     .social-footer{
-      background: linear-gradient(180deg, #7a0f3f 0%, #b01261 45%, #db2777 100%);
+      background: linear-gradient(180deg, #7b0f3d 0%, #b01261 45%, #db2777 100%);
       color: #fff;
       padding: 4.5rem 0 2.5rem;
       text-align: center;
@@ -495,6 +529,7 @@
       color: rgba(15,23,42,0.85);
       margin-bottom: 0.4rem;
     }
+
     .required { color: #dc2626; margin-left: 0.2rem; }
 
     input, select, textarea {
@@ -520,16 +555,16 @@
       margin-top: 0.75rem;
       padding: 0.95rem 1.2rem;
       border-radius: 12px;
-      background: var(--accent);
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
       color: #fff;
       font-weight: 900;
       font-size: 1.05rem;
       cursor: pointer;
       border: none;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
       font-family: "Poppins", system-ui, -apple-system, sans-serif;
     }
-    .submit-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); background: #c61f6a; }
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); filter: saturate(1.05); }
     .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
 
     .success-message, .error-message { text-align: center; padding: 2.5rem 1rem; }
@@ -539,6 +574,9 @@
     .error-details { font-size: 0.92rem; opacity: 0.85; }
 
     /* Responsive */
+    @media (max-width: 980px){
+      .pill-grid{ grid-template-columns: repeat(2, minmax(220px, 1fr)); }
+    }
     @media (max-width: 900px) {
       .two-column-layout { grid-template-columns: 1fr; }
       .hero { min-height: auto; padding: 7.5rem 0 3.75rem; }
@@ -555,6 +593,8 @@
       .toggle-switch { width: 48px; height: 26px; }
       .toggle-slider { width: 20px; height: 20px; }
       .toggle-switch.active .toggle-slider { transform: translateX(22px); }
+      .pill-grid{ grid-template-columns: 1fr; }
+      .pill span{ font-size: 1.15rem; }
     }
     @media (max-width: 520px){
       .social-grid { grid-template-columns: 1fr; }
@@ -566,7 +606,7 @@
   <!-- NAV -->
   <nav class="navbar">
     <div class="navbar-content">
-      <!-- OFA LOGO LEFT -->
+      <!-- SVG LOGO LEFT -->
       <a class="logo-container" href="https://optionsforall.org" aria-label="Options For All Home">
         <img
           src="https://optionsforall.org/wp-content/themes/elevation_theme/assets/images/logo.svg"
@@ -576,7 +616,7 @@
         />
       </a>
 
-      <!-- Language Toggle RIGHT (optional) -->
+      <!-- Language Toggle RIGHT -->
       <div class="language-toggle" aria-label="Language toggle">
         <span class="lang-label active" id="lang-en" role="button" tabindex="0">EN</span>
         <div class="toggle-switch" id="toggle-switch" role="switch" aria-checked="false" tabindex="0">
@@ -592,17 +632,26 @@
     <section class="hero" id="hero">
       <div class="hero-background">
         <img
-          src="PASTE_HERO_IMAGE_URL_HERE"
-          alt="You Better Werk"
+          src="https://optionsforall.org/wp-content/uploads/2022/05/369A0077-1.jpg"
+          alt=""
+          aria-hidden="true"
           onerror="this.style.display='none';"
         />
       </div>
 
       <div class="container hero-content">
-        <h1 id="main-title">You Better Werk</h1>
+        <!-- HERO TITLE IMAGE (replaces heading text) -->
+        <img
+          id="hero-title-image"
+          src="https://optionsforall.org/wp-content/uploads/2026/01/email-banner-2.png"
+          alt="You Better Werk"
+          onerror="this.style.display='none';"
+        />
+
         <p id="subtitle">
-          Recovery. Stability. A path back to work — with individualized support while you build momentum.
+          Recovery. Stability. A Path Back to Work.
         </p>
+
         <div class="cta-buttons">
           <button class="btn btn-primary" id="primary-button" type="button">Sign Up for an Info Session</button>
           <button class="btn btn-secondary" id="secondary-button" type="button">Learn How It Works</button>
@@ -612,16 +661,16 @@
 
     <!-- MAIN CONTENT -->
     <div class="content">
-      <!-- ABOUT / WHAT TO EXPECT -->
-      <section class="section bg-a">
+      <!-- ABOUT -->
+      <section class="section bg-a" id="about-section">
         <div class="container section-inner">
           <h2 class="section-title" id="about-title">What to Expect</h2>
 
           <div class="two-column-layout">
             <div class="column-left">
               <img
-                src="PASTE_SECTION_IMAGE_URL_HERE"
-                alt="Participant support and coaching"
+                src="https://www.mindful.org/content/uploads/AdobeStockDavide-Angelini-1.png"
+                alt="Supportive moment during recovery and community connection"
                 class="section-image"
                 onerror="this.style.display='none';"
               />
@@ -629,58 +678,55 @@
 
             <div class="column-right">
               <p class="section-content" id="about-p1">
-                You Better Werk is an employment program for people in recovery who are ready to take the next step toward work.
-                We believe meaningful employment can support stability, confidence, and long-term recovery.
+                You Better Werk is an employment program for people in recovery who are ready to take the next step toward work. We believe meaningful employment can support stability, confidence, and long-term recovery.
               </p>
               <p class="section-content" id="about-p2">
-                This program focuses on real-world employment. We support participants with individualized coaching while they’re working,
-                not months of training before anything happens.
+                This program focuses on real-world employment support, not long training periods before anything happens. Participants receive individualized guidance and coaching while working.
               </p>
               <p class="section-content" id="about-p3">
-                Your first step is a low-pressure information session at Stepping Stone, where you can learn more, ask questions, and meet the team.
+                Your first step is an information session at Stepping Stone. It’s a low-pressure way to learn about the program, ask questions, and decide if it feels like the right fit.
               </p>
             </div>
           </div>
 
           <div class="highlight-box" id="highlight-box">
             <p class="section-content" id="highlight-p1">
-              You don’t need a résumé. You don’t need to have everything figured out.
-              You just need interest in taking a step toward work.
+              You don’t need a résumé. You don’t need to have everything figured out. You just need interest in taking a step toward work.
             </p>
             <p class="section-content" id="highlight-p2">
-              Participation requires eligibility through the California Department of Rehabilitation (DOR). We can help you start that process.
+              If you’re interested after the info session, the next step is a one-on-one meeting with a case manager to explore goals, readiness, and interest in joining the program.
             </p>
           </div>
         </div>
       </section>
 
       <!-- WHO -->
-      <section class="section bg-b">
+      <section class="section bg-b" id="who-section">
         <div class="container section-inner">
-          <h2 class="section-title" id="who-title">Is This Program Right for You?</h2>
-          <p class="section-content" id="who-intro">You Better Werk may be a good fit if you are:</p>
+          <h2 class="section-title" id="who-title">Who It’s For</h2>
+          <p class="section-content" id="who-intro">You Better Werk is designed for individuals with substance use histories who are:</p>
 
           <div class="grid">
             <div class="card" id="card-1">
-              <h3><span class="emoji">💪</span><span id="card-1-title">Curious about working again</span></h3>
-              <p id="card-1-text">Exploring what’s possible — at a pace that fits you.</p>
+              <h3 id="card-1-title">Curious about working again</h3>
+              <p id="card-1-text">Exploring what’s possible—at a pace that fits you.</p>
             </div>
             <div class="card" id="card-2">
-              <h3><span class="emoji">🔄</span><span id="card-2-title">Returning after a break</span></h3>
-              <p id="card-2-text">Looking for support rebuilding your path back to work.</p>
+              <h3 id="card-2-title">Returning after an interruption</h3>
+              <p id="card-2-text">Getting support rebuilding your path back to work.</p>
             </div>
             <div class="card" id="card-3">
-              <h3><span class="emoji">🧭</span><span id="card-3-title">Not sure where to start</span></h3>
-              <p id="card-3-text">Want help identifying strengths, goals, and next steps.</p>
+              <h3 id="card-3-title">Not sure where to start</h3>
+              <p id="card-3-text">Identifying strengths, goals, and next steps with support.</p>
             </div>
             <div class="card" id="card-4">
-              <h3><span class="emoji">🤝</span><span id="card-4-title">Seeking ongoing support</span></h3>
-              <p id="card-4-text">Interested in coaching before, during, and after employment.</p>
+              <h3 id="card-4-title">Looking for ongoing coaching</h3>
+              <p id="card-4-text">Receiving support before, during, and after employment.</p>
             </div>
           </div>
 
           <p class="section-content" id="who-outro">
-            Not sure if it’s the right fit? We’ll talk through your questions and help you explore your options.
+            Not sure if it’s the right fit? We’re here to talk through your questions and help you explore what works best for you.
           </p>
         </div>
       </section>
@@ -690,74 +736,85 @@
         <div class="container section-inner">
           <h2 class="section-title" id="how-title">How It Works</h2>
 
-          <p class="section-content" id="how-intro">
-            You’ll have a team supporting your goals, readiness, and employment journey.
+          <p class="section-content" id="how-p1">
+            You Better Werk provides individualized employment support designed to meet you where you are and help you move forward with stability and confidence.
           </p>
 
-          <div class="grid">
-            <div class="card">
-              <h3><span class="emoji">🧑‍💼</span><span id="how-1-title">Dedicated case manager</span></h3>
+          <div class="why-choose-grid">
+            <div class="why-choose-item">
+              <div class="why-icon">🧑‍💼</div>
+              <h4 id="how-1-title">Dedicated case manager</h4>
               <p id="how-1-text">Personalized support based on your goals and readiness.</p>
             </div>
-            <div class="card">
-              <h3><span class="emoji">🧩</span><span id="how-2-title">Job placement specialist</span></h3>
+            <div class="why-choose-item">
+              <div class="why-icon">🧩</div>
+              <h4 id="how-2-title">Job placement specialist</h4>
               <p id="how-2-text">Help connecting with employers and opportunities.</p>
             </div>
-            <div class="card">
-              <h3><span class="emoji">📝</span><span id="how-3-title">One-on-one planning</span></h3>
-              <p id="how-3-text">Guidance aligning work with your real-life priorities.</p>
+            <div class="why-choose-item">
+              <div class="why-icon">🗺️</div>
+              <h4 id="how-3-title">One-on-one planning</h4>
+              <p id="how-3-text">Guidance to align work with your real-life priorities.</p>
             </div>
-            <div class="card">
-              <h3><span class="emoji">🏁</span><span id="how-4-title">Ongoing coaching</span></h3>
-              <p id="how-4-text">Support addressing barriers and sustaining employment.</p>
+            <div class="why-choose-item">
+              <div class="why-icon">🤝</div>
+              <h4 id="how-4-title">Ongoing coaching</h4>
+              <p id="how-4-text">Support to address barriers and sustain employment.</p>
             </div>
-          </div>
-
-          <div class="cta-buttons" style="margin-top: 0.75rem;">
-            <button class="btn btn-primary" id="how-cta" type="button">Sign Up for an Info Session</button>
           </div>
         </div>
       </section>
 
-      <!-- FIRST STEP -->
-      <section class="section bg-b">
+      <!-- BIOS -->
+      <section class="section bg-b" id="bios">
         <div class="container section-inner">
-          <h2 class="section-title" id="first-title">Your First Step</h2>
-          <p class="section-content" id="first-intro">
-            Start with an information session at Stepping Stone — low-pressure, supportive, and focused on your questions.
+          <h2 class="section-title" id="bios-title">About Our Partners</h2>
+          <p class="section-content" id="bios-intro">
+            You Better Werk is built on collaboration—connecting people to community, support, and opportunity.
           </p>
 
-          <div class="steps-grid">
-            <div class="step-item">
-              <div class="step-top">
-                <div class="step-badge">1</div>
-                <h4 id="step-1-title">Learn</h4>
-              </div>
-              <p id="step-1-text">What You Better Werk is and how support works.</p>
+          <div class="grid">
+            <div class="card" id="ofa-bio-card">
+              <h3 id="ofa-bio-title">About Options For All</h3>
+              <p id="ofa-bio-text">
+                Options For All (OFA) is a California 501(c)(3) nonprofit organization dedicated to creating and supporting opportunities for adults with intellectual and/or developmental disabilities (I/DD). We exist to create and support opportunities for adults with I/DD in making choices to live, work, and love life in their community with dignity and respect. Our team creates hope, inspires dreams, and enables our clients to live a life without limits—Options For All: the best place to be.
+              </p>
             </div>
 
-            <div class="step-item">
-              <div class="step-top">
-                <div class="step-badge">2</div>
-                <h4 id="step-2-title">Ask</h4>
-              </div>
-              <p id="step-2-text">Questions about eligibility, next steps, and expectations.</p>
+            <div class="card" id="ss-bio-card">
+              <h3 id="ss-bio-title">About Stepping Stone</h3>
+              <p id="ss-bio-text">
+                Stepping Stone aims to help end the stigma surrounding recovery from alcohol and substance use and to remind people that help is available and no one has to deal with this issue alone. What happens here ripples out and changes the lives of partners, spouses, parents, siblings, and friends—creating a community that goes far beyond groups and meetings. We are Stepping Stone—volunteers, staff, residents, outpatient clients, donors, supporters, family members, friends, neighbors, and more. I am Stepping Stone. You are Stepping Stone.
+              </p>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div class="step-item">
-              <div class="step-top">
-                <div class="step-badge">3</div>
-                <h4 id="step-3-title">Meet</h4>
-              </div>
-              <p id="step-3-text">The team and what ongoing coaching looks like.</p>
+      <!-- IMPORTANT -->
+      <section class="section bg-a" id="important-section">
+        <div class="container section-inner">
+          <h2 class="section-title" id="important-title">Important to Know</h2>
+          <p class="section-content" id="important-intro">
+            You Better Werk is not a guaranteed job placement program. We don’t promise specific jobs, timelines, wages, industries, or hours.
+          </p>
+
+          <div class="grid">
+            <div class="card">
+              <h3>Not guaranteed</h3>
+              <p>This is not a guaranteed job program.</p>
             </div>
-
-            <div class="step-item">
-              <div class="step-top">
-                <div class="step-badge">4</div>
-                <h4 id="step-4-title">Decide</h4>
-              </div>
-              <p id="step-4-text">If it feels like the right next step for you.</p>
+            <div class="card">
+              <h3>No promises</h3>
+              <p>We don’t promise specific jobs, timelines, wages, industries, or hours.</p>
+            </div>
+            <div class="card">
+              <h3>Individualized</h3>
+              <p>Each path is personalized based on goals and readiness.</p>
+            </div>
+            <div class="card">
+              <h3>DOR eligibility</h3>
+              <p>Participation requires eligibility through the California Department of Rehabilitation (DOR). We can help you start that process.</p>
             </div>
           </div>
         </div>
@@ -767,22 +824,15 @@
     <!-- CTA BAND -->
     <section class="footer-cta" id="footer-cta">
       <div class="container">
-        <h2 id="contact-title">Sign Up for an Info Session</h2>
+        <h2 id="contact-title">Ready to Take the First Step?</h2>
         <p id="contact-subtitle">
-          This is your first step. We’ll follow up with the next available session details.
+          Start with a low-pressure information session at Stepping Stone. We’ll follow up with the next available session details and help you understand the next steps.
         </p>
-        <p id="contact-methods">
-          You can also reach us at <strong>referrals@optionsforall.org</strong> or click the button below.
-        </p>
+        <p id="contact-methods">You can reach us at <strong>referrals@optionsforall.org</strong> or click the button below.</p>
 
         <div class="cta-buttons">
-          <button class="btn btn-primary" id="contact-button" type="button">Get Started</button>
+          <button class="btn btn-primary" id="contact-button" type="button">Sign Up for an Info Session</button>
         </div>
-
-        <p class="section-content" style="margin: 1.25rem auto 0; max-width: 920px; font-size: 0.98rem; color: rgba(15,23,42,0.74);" id="disclaimer">
-          Note: You Better Werk is not a guaranteed job placement program. We don’t promise specific jobs, timelines, wages, industries, or hours.
-          Participation requires eligibility through the California Department of Rehabilitation (DOR). We can help you start that process.
-        </p>
       </div>
     </section>
 
@@ -829,7 +879,7 @@
       <div class="modal-header">
         <button class="close-modal" id="closeModal" aria-label="Close form">×</button>
         <h2 id="modal-title">Sign Up for an Info Session</h2>
-        <p id="modal-intro">Fill out the form below and we’ll follow up with the next available session details.</p>
+        <p id="modal-intro">Please fill out the fields below and our team will follow up with the next available information session details.</p>
       </div>
 
       <div class="modal-body" id="modalBody">
@@ -846,6 +896,17 @@
           </div>
 
           <div class="form-group">
+            <label for="contactType">Contact Type<span class="required">*</span></label>
+            <select id="contactType" name="contactType" required>
+              <option value="">Select an option</option>
+              <option value="participant">Potential Participant</option>
+              <option value="family">Family Member / Support Person</option>
+              <option value="provider">Provider / Partner</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
             <label for="email">Email<span class="required">*</span></label>
             <input type="email" id="email" name="email" required />
           </div>
@@ -856,8 +917,30 @@
           </div>
 
           <div class="form-group">
-            <label for="message">Anything you want us to know?</label>
-            <textarea id="message" name="message" placeholder="Optional"></textarea>
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" />
+          </div>
+
+          <div class="form-group">
+            <label for="zip">ZIP / Postal Code</label>
+            <input type="text" id="zip" name="zip" />
+          </div>
+
+          <div class="form-group">
+            <label for="referral">How did you hear about us?</label>
+            <select id="referral" name="referral">
+              <option value="">Select an option</option>
+              <option value="web-search">Web Search</option>
+              <option value="social-media">Social Media</option>
+              <option value="stepping-stone">Stepping Stone</option>
+              <option value="friend-family">Friend / Family</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="details">Additional Details</label>
+            <textarea id="details" name="details" placeholder="In a few sentences, please describe what support you’re looking for."></textarea>
           </div>
 
           <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
@@ -871,150 +954,142 @@
     // EMAIL.JS CONFIGURATION
     // ========================================
     const EMAILJS_CONFIG = {
-      PUBLIC_KEY: 'YOUR_PUBLIC_KEY_HERE',
-      SERVICE_ID: 'YOUR_SERVICE_ID_HERE',
-      TEMPLATE_ID: 'YOUR_TEMPLATE_ID_HERE'
+      PUBLIC_KEY: '_CFgjIZ4ZpMfSLZW4',
+      SERVICE_ID: 'service_n43h3u8',
+      TEMPLATE_ID: 'template_eof4zsc'
     };
 
-    if (typeof emailjs !== 'undefined' && EMAILJS_CONFIG.PUBLIC_KEY !== 'YOUR_PUBLIC_KEY_HERE') {
+    if (typeof emailjs !== 'undefined' && EMAILJS_CONFIG.PUBLIC_KEY && EMAILJS_CONFIG.PUBLIC_KEY !== 'YOUR_PUBLIC_KEY_HERE') {
       emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
     }
 
     // ========================================
-    // TRANSLATIONS (optional toggle like CE)
+    // TRANSLATIONS (Optional)
     // ========================================
     const translations = {
       en: {
-        main_title: "You Better Werk",
-        subtitle: "Recovery. Stability. A path back to work — with individualized support while you build momentum.",
-        primary_button: "Sign Up for an Info Session",
-        secondary_button: "Learn How It Works",
+        subtitle: 'Recovery. Stability. A Path Back to Work.',
+        primary_button: 'Sign Up for an Info Session',
+        secondary_button: 'Learn How It Works',
 
-        about_title: "What to Expect",
-        about_p1: "You Better Werk is an employment program for people in recovery who are ready to take the next step toward work. We believe meaningful employment can support stability, confidence, and long-term recovery.",
-        about_p2: "This program focuses on real-world employment. We support participants with individualized coaching while they’re working, not months of training before anything happens.",
-        about_p3: "Your first step is a low-pressure information session at Stepping Stone, where you can learn more, ask questions, and meet the team.",
-        highlight_p1: "You don’t need a résumé. You don’t need to have everything figured out. You just need interest in taking a step toward work.",
-        highlight_p2: "Participation requires eligibility through the California Department of Rehabilitation (DOR). We can help you start that process.",
+        about_title: 'What to Expect',
+        about_p1: 'You Better Werk is an employment program for people in recovery who are ready to take the next step toward work. We believe meaningful employment can support stability, confidence, and long-term recovery.',
+        about_p2: 'This program focuses on real-world employment support, not long training periods before anything happens. Participants receive individualized guidance and coaching while working.',
+        about_p3: 'Your first step is an information session at Stepping Stone. It’s a low-pressure way to learn about the program, ask questions, and decide if it feels like the right fit.',
+        highlight_p1: 'You don’t need a résumé. You don’t need to have everything figured out. You just need interest in taking a step toward work.',
+        highlight_p2: 'If you’re interested after the info session, the next step is a one-on-one meeting with a case manager to explore goals, readiness, and interest in joining the program.',
 
-        who_title: "Is This Program Right for You?",
-        who_intro: "You Better Werk may be a good fit if you are:",
-        card_1_title: "Curious about working again",
-        card_1_text: "Exploring what’s possible — at a pace that fits you.",
-        card_2_title: "Returning after a break",
-        card_2_text: "Looking for support rebuilding your path back to work.",
-        card_3_title: "Not sure where to start",
-        card_3_text: "Want help identifying strengths, goals, and next steps.",
-        card_4_title: "Seeking ongoing support",
-        card_4_text: "Interested in coaching before, during, and after employment.",
-        who_outro: "Not sure if it’s the right fit? We’ll talk through your questions and help you explore your options.",
+        who_title: 'Who It’s For',
+        who_intro: 'You Better Werk is designed for individuals with substance use histories who are:',
+        card_1_title: 'Curious about working again',
+        card_1_text: 'Exploring what’s possible—at a pace that fits you.',
+        card_2_title: 'Returning after an interruption',
+        card_2_text: 'Getting support rebuilding your path back to work.',
+        card_3_title: 'Not sure where to start',
+        card_3_text: 'Identifying strengths, goals, and next steps with support.',
+        card_4_title: 'Looking for ongoing coaching',
+        card_4_text: 'Receiving support before, during, and after employment.',
+        who_outro: 'Not sure if it’s the right fit? We’re here to talk through your questions and help you explore what works best for you.',
 
-        how_title: "How It Works",
-        how_intro: "You’ll have a team supporting your goals, readiness, and employment journey.",
-        how_1_title: "Dedicated case manager",
-        how_1_text: "Personalized support based on your goals and readiness.",
-        how_2_title: "Job placement specialist",
-        how_2_text: "Help connecting with employers and opportunities.",
-        how_3_title: "One-on-one planning",
-        how_3_text: "Guidance aligning work with your real-life priorities.",
-        how_4_title: "Ongoing coaching",
-        how_4_text: "Support addressing barriers and sustaining employment.",
-        how_cta: "Sign Up for an Info Session",
+        how_title: 'How It Works',
+        how_p1: 'You Better Werk provides individualized employment support designed to meet you where you are and help you move forward with stability and confidence.',
+        how_1_title: 'Dedicated case manager',
+        how_1_text: 'Personalized support based on your goals and readiness.',
+        how_2_title: 'Job placement specialist',
+        how_2_text: 'Help connecting with employers and opportunities.',
+        how_3_title: 'One-on-one planning',
+        how_3_text: 'Guidance to align work with your real-life priorities.',
+        how_4_title: 'Ongoing coaching',
+        how_4_text: 'Support to address barriers and sustain employment.',
 
-        first_title: "Your First Step",
-        first_intro: "Start with an information session at Stepping Stone — low-pressure, supportive, and focused on your questions.",
-        step_1_title: "Learn",
-        step_1_text: "What You Better Werk is and how support works.",
-        step_2_title: "Ask",
-        step_2_text: "Questions about eligibility, next steps, and expectations.",
-        step_3_title: "Meet",
-        step_3_text: "The team and what ongoing coaching looks like.",
-        step_4_title: "Decide",
-        step_4_text: "If it feels like the right next step for you.",
+        bios_title: 'About Our Partners',
+        bios_intro: 'You Better Werk is built on collaboration—connecting people to community, support, and opportunity.',
+        ofa_bio_title: 'About Options For All',
+        ofa_bio_text: 'Options For All (OFA) is a California 501(c)(3) nonprofit organization dedicated to creating and supporting opportunities for adults with intellectual and/or developmental disabilities (I/DD). We exist to create and support opportunities for adults with I/DD in making choices to live, work, and love life in their community with dignity and respect. Our team creates hope, inspires dreams, and enables our clients to live a life without limits—Options For All: the best place to be.',
+        ss_bio_title: 'About Stepping Stone',
+        ss_bio_text: 'Stepping Stone aims to help end the stigma surrounding recovery from alcohol and substance use and to remind people that help is available and no one has to deal with this issue alone. What happens here ripples out and changes the lives of partners, spouses, parents, siblings, and friends—creating a community that goes far beyond groups and meetings. We are Stepping Stone—volunteers, staff, residents, outpatient clients, donors, supporters, family members, friends, neighbors, and more. I am Stepping Stone. You are Stepping Stone.',
 
-        contact_title: "Sign Up for an Info Session",
-        contact_subtitle: "This is your first step. We’ll follow up with the next available session details.",
-        contact_methods: "You can also reach us at <strong>referrals@optionsforall.org</strong> or click the button below.",
-        contact_button: "Get Started",
-        disclaimer: "Note: You Better Werk is not a guaranteed job placement program. We don’t promise specific jobs, timelines, wages, industries, or hours. Participation requires eligibility through the California Department of Rehabilitation (DOR). We can help you start that process.",
+        important_title: 'Important to Know',
+        important_intro: 'You Better Werk is not a guaranteed job placement program. We don’t promise specific jobs, timelines, wages, industries, or hours.',
 
-        modal_title: "Sign Up for an Info Session",
-        modal_intro: "Fill out the form below and we’ll follow up with the next available session details.",
+        contact_title: 'Ready to Take the First Step?',
+        contact_subtitle: 'Start with a low-pressure information session at Stepping Stone. We’ll follow up with the next available session details and help you understand the next steps.',
+        contact_methods: 'You can reach us at <strong>referrals@optionsforall.org</strong> or click the button below.',
+        contact_button: 'Sign Up for an Info Session',
 
-        social_title: "Check Us Out on Social Media",
+        modal_title: 'Sign Up for an Info Session',
+        modal_intro: 'Please fill out the fields below and our team will follow up with the next available information session details.',
+
+        social_title: 'Check Us Out on Social Media',
         social_subtitle: "Stay connected and see what we're up to!",
-        social_facebook: "Facebook",
-        social_instagram: "Instagram",
-        social_linkedin: "LinkedIn",
-        social_youtube: "YouTube"
+        social_facebook: 'Facebook',
+        social_instagram: 'Instagram',
+        social_linkedin: 'LinkedIn',
+        social_youtube: 'YouTube'
       },
       es: {
-        main_title: "You Better Werk",
-        subtitle: "Recuperación. Estabilidad. Un camino de regreso al trabajo — con apoyo individualizado mientras avanzas.",
-        primary_button: "Regístrate para una sesión informativa",
-        secondary_button: "Cómo funciona",
+        subtitle: 'Recuperación. Estabilidad. Un camino de regreso al trabajo.',
+        primary_button: 'Regístrate para una sesión informativa',
+        secondary_button: 'Cómo funciona',
 
-        about_title: "Qué esperar",
-        about_p1: "You Better Werk es un programa de empleo para personas en recuperación que están listas para dar el siguiente paso hacia el trabajo. Creemos que un empleo significativo puede apoyar la estabilidad, la confianza y la recuperación a largo plazo.",
-        about_p2: "Este programa se enfoca en empleo real. Brindamos apoyo individualizado mientras la persona trabaja, no meses de capacitación antes de comenzar.",
-        about_p3: "El primer paso es una sesión informativa sin presión en Stepping Stone, donde puedes aprender más, hacer preguntas y conocer al equipo.",
-        highlight_p1: "No necesitas un currículum. No necesitas tener todo resuelto. Solo necesitas interés en dar un paso hacia el trabajo.",
-        highlight_p2: "La participación requiere elegibilidad a través del Departamento de Rehabilitación de California (DOR). Podemos ayudarte a comenzar ese proceso.",
+        about_title: 'Qué esperar',
+        about_p1: 'You Better Werk es un programa de empleo para personas en recuperación que están listas para dar el siguiente paso hacia el trabajo. Creemos que un empleo con propósito puede apoyar la estabilidad, la confianza y la recuperación a largo plazo.',
+        about_p2: 'Este programa se enfoca en apoyo laboral en el mundo real, no en largos períodos de capacitación antes de que suceda algo. Los participantes reciben guía individual y acompañamiento mientras trabajan.',
+        about_p3: 'Tu primer paso es una sesión informativa en Stepping Stone. Es una forma sin presión de conocer el programa, hacer preguntas y decidir si se siente como la opción correcta.',
+        highlight_p1: 'No necesitas un currículum. No necesitas tener todo resuelto. Solo necesitas interés en dar un paso hacia el trabajo.',
+        highlight_p2: 'Si te interesa después de la sesión informativa, el siguiente paso es una reunión individual con un administrador de casos para hablar de metas, preparación e interés en unirte al programa.',
 
-        who_title: "¿Este programa es adecuado para ti?",
-        who_intro: "You Better Werk puede ser una buena opción si tú:",
-        card_1_title: "Quieres volver a trabajar",
-        card_1_text: "Exploras lo posible a tu propio ritmo.",
-        card_2_title: "Regresas después de una pausa",
-        card_2_text: "Buscas apoyo para retomar el camino hacia el trabajo.",
-        card_3_title: "No sabes por dónde empezar",
-        card_3_text: "Quieres ayuda para identificar fortalezas, metas y próximos pasos.",
-        card_4_title: "Buscas apoyo continuo",
-        card_4_text: "Te interesa recibir acompañamiento antes, durante y después del empleo.",
-        who_outro: "¿No estás seguro si es lo adecuado? Hablaremos sobre tus preguntas y opciones.",
+        who_title: 'Para quién es',
+        who_intro: 'You Better Werk está diseñado para personas con antecedentes de consumo de sustancias que:',
+        card_1_title: 'Tienen curiosidad por volver a trabajar',
+        card_1_text: 'Exploran lo que es posible, a un ritmo que funcione para ti.',
+        card_2_title: 'Regresan después de una interrupción',
+        card_2_text: 'Reciben apoyo para reconstruir su camino de regreso al trabajo.',
+        card_3_title: 'No saben por dónde empezar',
+        card_3_text: 'Identifican fortalezas, metas y próximos pasos con apoyo.',
+        card_4_title: 'Buscan acompañamiento continuo',
+        card_4_text: 'Reciben apoyo antes, durante y después del empleo.',
+        who_outro: '¿No estás seguro si es lo adecuado? Estamos aquí para responder preguntas y ayudarte a explorar lo que funcione mejor para ti.',
 
-        how_title: "Cómo funciona",
-        how_intro: "Tendrás un equipo que apoye tus metas, preparación y camino laboral.",
-        how_1_title: "Administrador/a de caso",
-        how_1_text: "Apoyo personalizado según tus metas y preparación.",
-        how_2_title: "Especialista de colocación",
-        how_2_text: "Ayuda para conectarte con empleadores y oportunidades.",
-        how_3_title: "Plan individual",
-        how_3_text: "Orientación para alinear el trabajo con tu vida diaria.",
-        how_4_title: "Acompañamiento continuo",
-        how_4_text: "Apoyo para superar barreras y mantener el empleo.",
-        how_cta: "Regístrate para una sesión informativa",
+        how_title: 'Cómo funciona',
+        how_p1: 'You Better Werk ofrece apoyo laboral individualizado diseñado para encontrarte donde estás y ayudarte a avanzar con estabilidad y confianza.',
+        how_1_title: 'Administrador de casos',
+        how_1_text: 'Apoyo personalizado según tus metas y preparación.',
+        how_2_title: 'Especialista en colocación',
+        how_2_text: 'Ayuda para conectarte con empleadores y oportunidades.',
+        how_3_title: 'Planificación individual',
+        how_3_text: 'Guía para alinear el trabajo con tus prioridades de vida.',
+        how_4_title: 'Acompañamiento continuo',
+        how_4_text: 'Apoyo para abordar barreras y mantener el empleo.',
 
-        first_title: "Tu primer paso",
-        first_intro: "Comienza con una sesión informativa en Stepping Stone — sin presión y enfocada en tus preguntas.",
-        step_1_title: "Aprende",
-        step_1_text: "Qué es You Better Werk y cómo funciona el apoyo.",
-        step_2_title: "Pregunta",
-        step_2_text: "Sobre elegibilidad, próximos pasos y expectativas.",
-        step_3_title: "Conoce",
-        step_3_text: "Al equipo y cómo es el acompañamiento continuo.",
-        step_4_title: "Decide",
-        step_4_text: "Si se siente como el siguiente paso correcto para ti.",
+        bios_title: 'Sobre nuestros aliados',
+        bios_intro: 'You Better Werk se basa en la colaboración—conectando a las personas con comunidad, apoyo y oportunidad.',
+        ofa_bio_title: 'Sobre Options For All',
+        ofa_bio_text: 'Options For All (OFA) es una organización sin fines de lucro 501(c)(3) de California dedicada a crear y apoyar oportunidades para adultos con discapacidades intelectuales y/o del desarrollo (I/DD). Existimos para apoyar a las personas a elegir cómo vivir, trabajar y disfrutar la vida en su comunidad con dignidad y respeto. Nuestro equipo crea esperanza, inspira sueños y ayuda a nuestros clientes a vivir una vida sin límites—Options For All: el mejor lugar para estar.',
+        ss_bio_title: 'Sobre Stepping Stone',
+        ss_bio_text: 'Stepping Stone busca ayudar a terminar con el estigma alrededor de la recuperación del alcohol y el consumo de sustancias, y recordar que hay ayuda disponible y nadie tiene que enfrentar esto solo. Lo que ocurre aquí se extiende y cambia la vida de parejas, familias y amistades—una comunidad que va más allá de grupos y reuniones. Somos Stepping Stone: voluntarios, personal, residentes, clientes, donantes, personas de apoyo, familiares, amigos y vecinos. Yo soy Stepping Stone. Tú eres Stepping Stone.',
 
-        contact_title: "Regístrate para una sesión informativa",
-        contact_subtitle: "Este es tu primer paso. Te contactaremos con los detalles de la próxima sesión disponible.",
-        contact_methods: "También puedes escribir a <strong>referrals@optionsforall.org</strong> o hacer clic en el botón.",
-        contact_button: "Comenzar",
-        disclaimer: "Nota: You Better Werk no es un programa de colocación garantizada. No prometemos trabajos específicos, plazos, salarios, industrias u horarios. La participación requiere elegibilidad a través del Departamento de Rehabilitación de California (DOR). Podemos ayudarte a comenzar ese proceso.",
+        important_title: 'Importante saber',
+        important_intro: 'You Better Werk no es un programa de empleo garantizado. No prometemos trabajos específicos, plazos, salarios, industrias u horas.',
 
-        modal_title: "Regístrate para una sesión informativa",
-        modal_intro: "Completa el formulario y te contactaremos con los detalles de la próxima sesión disponible.",
+        contact_title: '¿Listo para dar el primer paso?',
+        contact_subtitle: 'Comienza con una sesión informativa sin presión en Stepping Stone. Te contactaremos con los detalles de la próxima sesión disponible y te ayudaremos con los siguientes pasos.',
+        contact_methods: 'También puedes escribir a <strong>referrals@optionsforall.org</strong> o hacer clic en el botón a continuación.',
+        contact_button: 'Regístrate para una sesión informativa',
 
-        social_title: "Síguenos en redes sociales",
-        social_subtitle: "¡Mantente conectado y mira lo que hacemos!",
-        social_facebook: "Facebook",
-        social_instagram: "Instagram",
-        social_linkedin: "LinkedIn",
-        social_youtube: "YouTube"
+        modal_title: 'Regístrate para una sesión informativa',
+        modal_intro: 'Completa los campos a continuación y nuestro equipo te dará seguimiento con los detalles de la próxima sesión informativa disponible.',
+
+        social_title: 'Síguenos en redes sociales',
+        social_subtitle: '¡Mantente conectado y mira lo que estamos haciendo!',
+        social_facebook: 'Facebook',
+        social_instagram: 'Instagram',
+        social_linkedin: 'LinkedIn',
+        social_youtube: 'YouTube'
       }
     };
 
-    let currentLang = "en";
+    let currentLang = 'en';
 
     function safeSetText(id, value) {
       const el = document.getElementById(id);
@@ -1026,76 +1101,72 @@
     }
 
     function updateContent(lang) {
-      const c = translations[lang];
-      if (!c) return;
+      const content = translations[lang];
+      if (!content) return;
 
-      safeSetText("main-title", c.main_title);
-      safeSetText("subtitle", c.subtitle);
-      safeSetText("primary-button", c.primary_button);
-      safeSetText("secondary-button", c.secondary_button);
+      safeSetText('subtitle', content.subtitle);
+      safeSetText('primary-button', content.primary_button);
+      safeSetText('secondary-button', content.secondary_button);
 
-      safeSetText("about-title", c.about_title);
-      safeSetText("about-p1", c.about_p1);
-      safeSetText("about-p2", c.about_p2);
-      safeSetText("about-p3", c.about_p3);
-      safeSetText("highlight-p1", c.highlight_p1);
-      safeSetText("highlight-p2", c.highlight_p2);
+      safeSetText('about-title', content.about_title);
+      safeSetText('about-p1', content.about_p1);
+      safeSetText('about-p2', content.about_p2);
+      safeSetText('about-p3', content.about_p3);
+      safeSetText('highlight-p1', content.highlight_p1);
+      safeSetText('highlight-p2', content.highlight_p2);
 
-      safeSetText("who-title", c.who_title);
-      safeSetText("who-intro", c.who_intro);
-      safeSetText("card-1-title", c.card_1_title);
-      safeSetText("card-1-text", c.card_1_text);
-      safeSetText("card-2-title", c.card_2_title);
-      safeSetText("card-2-text", c.card_2_text);
-      safeSetText("card-3-title", c.card_3_title);
-      safeSetText("card-3-text", c.card_3_text);
-      safeSetText("card-4-title", c.card_4_title);
-      safeSetText("card-4-text", c.card_4_text);
-      safeSetText("who-outro", c.who_outro);
+      safeSetText('who-title', content.who_title);
+      safeSetText('who-intro', content.who_intro);
+      safeSetText('card-1-title', content.card_1_title);
+      safeSetText('card-1-text', content.card_1_text);
+      safeSetText('card-2-title', content.card_2_title);
+      safeSetText('card-2-text', content.card_2_text);
+      safeSetText('card-3-title', content.card_3_title);
+      safeSetText('card-3-text', content.card_3_text);
+      safeSetText('card-4-title', content.card_4_title);
+      safeSetText('card-4-text', content.card_4_text);
+      safeSetText('who-outro', content.who_outro);
 
-      safeSetText("how-title", c.how_title);
-      safeSetText("how-intro", c.how_intro);
-      safeSetText("how-1-title", c.how_1_title);
-      safeSetText("how-1-text", c.how_1_text);
-      safeSetText("how-2-title", c.how_2_title);
-      safeSetText("how-2-text", c.how_2_text);
-      safeSetText("how-3-title", c.how_3_title);
-      safeSetText("how-3-text", c.how_3_text);
-      safeSetText("how-4-title", c.how_4_title);
-      safeSetText("how-4-text", c.how_4_text);
-      safeSetText("how-cta", c.how_cta);
+      safeSetText('how-title', content.how_title);
+      safeSetText('how-p1', content.how_p1);
+      safeSetText('how-1-title', content.how_1_title);
+      safeSetText('how-1-text', content.how_1_text);
+      safeSetText('how-2-title', content.how_2_title);
+      safeSetText('how-2-text', content.how_2_text);
+      safeSetText('how-3-title', content.how_3_title);
+      safeSetText('how-3-text', content.how_3_text);
+      safeSetText('how-4-title', content.how_4_title);
+      safeSetText('how-4-text', content.how_4_text);
 
-      safeSetText("first-title", c.first_title);
-      safeSetText("first-intro", c.first_intro);
-      safeSetText("step-1-title", c.step_1_title);
-      safeSetText("step-1-text", c.step_1_text);
-      safeSetText("step-2-title", c.step_2_title);
-      safeSetText("step-2-text", c.step_2_text);
-      safeSetText("step-3-title", c.step_3_title);
-      safeSetText("step-3-text", c.step_3_text);
-      safeSetText("step-4-title", c.step_4_title);
-      safeSetText("step-4-text", c.step_4_text);
+      safeSetText('bios-title', content.bios_title);
+      safeSetText('bios-intro', content.bios_intro);
+      safeSetText('ofa-bio-title', content.ofa_bio_title);
+      safeSetText('ofa-bio-text', content.ofa_bio_text);
+      safeSetText('ss-bio-title', content.ss_bio_title);
+      safeSetText('ss-bio-text', content.ss_bio_text);
 
-      safeSetText("contact-title", c.contact_title);
-      safeSetText("contact-subtitle", c.contact_subtitle);
-      safeSetHTML("contact-methods", c.contact_methods);
-      safeSetText("contact-button", c.contact_button);
-      safeSetText("disclaimer", c.disclaimer);
+      safeSetText('important-title', content.important_title);
+      safeSetText('important-intro', content.important_intro);
 
-      safeSetText("modal-title", c.modal_title);
-      safeSetText("modal-intro", c.modal_intro);
+      safeSetText('contact-title', content.contact_title);
+      safeSetText('contact-subtitle', content.contact_subtitle);
+      safeSetHTML('contact-methods', content.contact_methods);
+      safeSetText('contact-button', content.contact_button);
 
-      safeSetText("social-title", c.social_title);
-      safeSetText("social-subtitle", c.social_subtitle);
-      safeSetText("social-facebook", c.social_facebook);
-      safeSetText("social-instagram", c.social_instagram);
-      safeSetText("social-linkedin", c.social_linkedin);
-      safeSetText("social-youtube", c.social_youtube);
+      safeSetText('modal-title', content.modal_title);
+      safeSetText('modal-intro', content.modal_intro);
 
-      document.getElementById("lang-en").classList.toggle("active", lang === "en");
-      document.getElementById("lang-es").classList.toggle("active", lang === "es");
-      document.getElementById("toggle-switch").classList.toggle("active", lang === "es");
-      document.getElementById("toggle-switch").setAttribute("aria-checked", String(lang === "es"));
+      safeSetText('social-title', content.social_title);
+      safeSetText('social-subtitle', content.social_subtitle);
+      safeSetText('social-facebook', content.social_facebook);
+      safeSetText('social-instagram', content.social_instagram);
+      safeSetText('social-linkedin', content.social_linkedin);
+      safeSetText('social-youtube', content.social_youtube);
+
+      document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+      document.getElementById('lang-es').classList.toggle('active', lang === 'es');
+      document.getElementById('toggle-switch').classList.toggle('active', lang === 'es');
+      document.getElementById('toggle-switch').setAttribute('aria-checked', String(lang === 'es'));
     }
 
     function setLang(lang) {
@@ -1104,97 +1175,103 @@
     }
 
     // Toggle click
-    document.getElementById("toggle-switch").addEventListener("click", () => {
-      setLang(currentLang === "en" ? "es" : "en");
+    document.getElementById('toggle-switch').addEventListener('click', () => {
+      setLang(currentLang === 'en' ? 'es' : 'en');
     });
 
     // Toggle keyboard
-    document.getElementById("toggle-switch").addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
+    document.getElementById('toggle-switch').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        setLang(currentLang === "en" ? "es" : "en");
+        setLang(currentLang === 'en' ? 'es' : 'en');
       }
     });
 
     // Labels click/keyboard
-    document.getElementById("lang-en").addEventListener("click", () => setLang("en"));
-    document.getElementById("lang-es").addEventListener("click", () => setLang("es"));
+    document.getElementById('lang-en').addEventListener('click', () => setLang('en'));
+    document.getElementById('lang-es').addEventListener('click', () => setLang('es'));
 
-    document.getElementById("lang-en").addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setLang("en"); }
+    document.getElementById('lang-en').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setLang('en');
+      }
     });
-    document.getElementById("lang-es").addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setLang("es"); }
+    document.getElementById('lang-es').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setLang('es');
+      }
     });
 
     // Initialize default content
     updateContent(currentLang);
 
     // Set footer year
-    document.getElementById("year").textContent = String(new Date().getFullYear());
+    document.getElementById('year').textContent = String(new Date().getFullYear());
 
     // ========================================
     // MODAL + BUTTONS
     // ========================================
-    const modal = document.getElementById("contactModal");
-    const closeModalBtn = document.getElementById("closeModal");
-    const contactForm = document.getElementById("contactForm");
-    const modalBody = document.getElementById("modalBody");
+    const modal = document.getElementById('contactModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const contactForm = document.getElementById('contactForm');
+    const modalBody = document.getElementById('modalBody');
 
     function openModal() {
-      modal.classList.add("active");
-      modal.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
     }
 
     function closeModal() {
-      modal.classList.remove("active");
-      modal.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
       setTimeout(() => {
         modalBody.innerHTML = contactForm.outerHTML;
         attachFormSubmitListener();
-        // update modal translated text again (since form was re-rendered)
-        updateContent(currentLang);
       }, 250);
     }
 
-    document.getElementById("primary-button").addEventListener("click", openModal);
-    document.getElementById("contact-button").addEventListener("click", openModal);
-    document.getElementById("how-cta").addEventListener("click", openModal);
+    document.getElementById('primary-button').addEventListener('click', openModal);
+    document.getElementById('contact-button').addEventListener('click', openModal);
 
-    document.getElementById("secondary-button").addEventListener("click", () => {
-      const section = document.getElementById("how-section");
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.getElementById('secondary-button').addEventListener('click', () => {
+      const section = document.getElementById('how-section');
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
-    closeModalBtn.addEventListener("click", closeModal);
+    closeModalBtn.addEventListener('click', closeModal);
 
-    modal.addEventListener("click", (e) => {
+    modal.addEventListener('click', (e) => {
       if (e.target === modal) closeModal();
     });
 
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && modal.classList.contains("active")) closeModal();
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
     });
 
     // ========================================
     // FORM SUBMIT (EmailJS)
     // ========================================
     function attachFormSubmitListener() {
-      const form = document.getElementById("contactForm");
+      const form = document.getElementById('contactForm');
       if (!form) return;
 
-      form.addEventListener("submit", async (e) => {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const missingConfig =
-          EMAILJS_CONFIG.PUBLIC_KEY === "YOUR_PUBLIC_KEY_HERE" ||
-          EMAILJS_CONFIG.SERVICE_ID === "YOUR_SERVICE_ID_HERE" ||
-          EMAILJS_CONFIG.TEMPLATE_ID === "YOUR_TEMPLATE_ID_HERE";
+          !EMAILJS_CONFIG.PUBLIC_KEY ||
+          !EMAILJS_CONFIG.SERVICE_ID ||
+          !EMAILJS_CONFIG.TEMPLATE_ID ||
+          EMAILJS_CONFIG.PUBLIC_KEY === 'YOUR_PUBLIC_KEY_HERE' ||
+          EMAILJS_CONFIG.SERVICE_ID === 'YOUR_SERVICE_ID_HERE' ||
+          EMAILJS_CONFIG.TEMPLATE_ID === 'YOUR_TEMPLATE_ID_HERE';
 
         if (missingConfig) {
-          const errorHTML = currentLang === "en"
+          const errorHTML = currentLang === 'en'
             ? `
               <div class="error-message">
                 <h3>⚙️ Configuration Required</h3>
@@ -1205,9 +1282,9 @@
             `
             : `
               <div class="error-message">
-                <h3>⚙️ Configuración requerida</h3>
-                <p>EmailJS aún no está configurado. Agrega tus claves de EmailJS en el código.</p>
-                <p>Por ahora, envíanos un correo a <strong>referrals@optionsforall.org</strong>.</p>
+                <h3>⚙️ Configuración Requerida</h3>
+                <p>EmailJS aún no está configurado. Agregue sus claves de EmailJS en el código.</p>
+                <p>Por ahora, envíenos un correo a <strong>referrals@optionsforall.org</strong>.</p>
                 <button class="btn btn-primary" type="button" onclick="document.getElementById('closeModal').click()">Cerrar</button>
               </div>
             `;
@@ -1215,16 +1292,22 @@
           return;
         }
 
-        const submitBtnLocal = document.getElementById("submitBtn");
+        const submitBtnLocal = document.getElementById('submitBtn');
         submitBtnLocal.disabled = true;
-        submitBtnLocal.textContent = currentLang === "en" ? "Sending..." : "Enviando...";
+        submitBtnLocal.textContent = currentLang === 'en' ? 'Sending...' : 'Enviando...';
 
         const formData = {
-          from_name: `${document.getElementById("firstName").value} ${document.getElementById("lastName").value}`,
-          reply_to: document.getElementById("email").value,
-          email: document.getElementById("email").value,
-          phone: document.getElementById("phone").value,
-          message: document.getElementById("message").value
+          from_name: `${document.getElementById('firstName').value} ${document.getElementById('lastName').value}`,
+          firstName: document.getElementById('firstName').value,
+          lastName: document.getElementById('lastName').value,
+          contactType: document.getElementById('contactType').value,
+          reply_to: document.getElementById('email').value,
+          email: document.getElementById('email').value,
+          phone: document.getElementById('phone').value,
+          city: document.getElementById('city').value,
+          zip: document.getElementById('zip').value,
+          referral: document.getElementById('referral').value,
+          message: document.getElementById('details').value
         };
 
         try {
@@ -1234,41 +1317,41 @@
             formData
           );
 
-          const successHTML = currentLang === "en"
+          const successHTML = currentLang === 'en'
             ? `
               <div class="success-message">
-                <h3>✅ Submission Received!</h3>
-                <p>Thanks for signing up. We’ll follow up with the next available session details.</p>
+                <h3>✅ Message Sent!</h3>
+                <p>Thank you for reaching out. We've received your inquiry and will get back to you soon.</p>
                 <p>You can also email <strong>referrals@optionsforall.org</strong>.</p>
                 <button class="btn btn-primary" type="button" onclick="document.getElementById('closeModal').click()">Close</button>
               </div>
             `
             : `
               <div class="success-message">
-                <h3>✅ ¡Solicitud recibida!</h3>
-                <p>Gracias por registrarte. Te contactaremos con los detalles de la próxima sesión disponible.</p>
-                <p>También puedes escribir a <strong>referrals@optionsforall.org</strong>.</p>
+                <h3>✅ ¡Mensaje Enviado!</h3>
+                <p>Gracias por comunicarse. Hemos recibido su consulta y nos pondremos en contacto pronto.</p>
+                <p>También puede escribir a <strong>referrals@optionsforall.org</strong>.</p>
                 <button class="btn btn-primary" type="button" onclick="document.getElementById('closeModal').click()">Cerrar</button>
               </div>
             `;
           modalBody.innerHTML = successHTML;
 
         } catch (error) {
-          const errorText = (error && (error.text || error.message)) ? (error.text || error.message) : "Unknown error";
+          const errorText = (error && (error.text || error.message)) ? (error.text || error.message) : 'Unknown error';
 
-          const errorHTML = currentLang === "en"
+          const errorHTML = currentLang === 'en'
             ? `
               <div class="error-message">
                 <h3>❌ Something Went Wrong</h3>
-                <p>We couldn't submit your form. Please try again or email <strong>referrals@optionsforall.org</strong>.</p>
+                <p>We couldn't send your message. Please try again or email <strong>referrals@optionsforall.org</strong>.</p>
                 <p class="error-details">Error: ${errorText}</p>
                 <button class="btn btn-primary" type="button" onclick="document.getElementById('closeModal').click()">Close</button>
               </div>
             `
             : `
               <div class="error-message">
-                <h3>❌ Algo salió mal</h3>
-                <p>No pudimos enviar el formulario. Intenta nuevamente o escribe a <strong>referrals@optionsforall.org</strong>.</p>
+                <h3>❌ Algo Salió Mal</h3>
+                <p>No pudimos enviar su mensaje. Intente nuevamente o escriba a <strong>referrals@optionsforall.org</strong>.</p>
                 <p class="error-details">Error: ${errorText}</p>
                 <button class="btn btn-primary" type="button" onclick="document.getElementById('closeModal').click()">Cerrar</button>
               </div>
@@ -1276,10 +1359,10 @@
           modalBody.innerHTML = errorHTML;
 
         } finally {
-          const btn = document.getElementById("submitBtn");
+          const btn = document.getElementById('submitBtn');
           if (btn) {
             btn.disabled = false;
-            btn.textContent = currentLang === "en" ? "Submit" : "Enviar";
+            btn.textContent = currentLang === 'en' ? 'Submit' : 'Enviar';
           }
         }
       });
