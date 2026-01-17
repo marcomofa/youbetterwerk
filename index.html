@@ -152,14 +152,24 @@
       gap: 1.25rem;
     }
 
-    /* Hero title image */
-    #hero-title-image{
-      width: min(720px, 92vw);
-      height: auto;
-      display: block;
-      margin: 0 auto 0.35rem;
-      filter: drop-shadow(0 18px 34px rgba(0,0,0,0.28));
-    }
+/* Hero title image spacing fix */
+#hero-title-image{
+  width: min(720px, 92vw);
+  height: auto;
+  display: block;
+  margin: 0 auto -14px;     /* pulls subtitle up (fixes PNG bottom whitespace) */
+  filter: drop-shadow(0 18px 34px rgba(0,0,0,0.28));
+}
+
+/* tighten hero spacing a touch */
+.hero-content{
+  gap: 0.85rem;             /* was 1.25rem */
+}
+
+#subtitle{
+  margin: 0;                /* ensure no default spacing */
+  line-height: 1.25;
+}
 
     .hero p {
       font-size: clamp(1.05rem, 2vw, 1.3rem);
